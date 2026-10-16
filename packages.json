@@ -2,12 +2,12 @@
   "version": 1,
   "aliases": {
     "autonomic-core": {
-      "description": "Registry discovery — find-skills meta-skill for skills and workflows",
+      "description": "Registry discovery \u2014 find-skills and rmcp MCP gateway patterns for Autonomic stack",
       "bundle": "autonomic-core",
       "packages": []
     },
     "official": {
-      "description": "Official skill repos — awesome-copilot, anthropics/skills, azure-skills",
+      "description": "Official skill repos \u2014 awesome-copilot, anthropics/skills, azure-skills",
       "packages": [
         "github/awesome-copilot",
         "anthropics/skills",
@@ -16,30 +16,64 @@
     },
     "claude-skills": {
       "description": "Jeff Allan curated Claude skills library",
-      "packages": ["jeffallan/claude-skills"]
+      "packages": [
+        "jeffallan/claude-skills"
+      ]
+    },
+    "matt-skills": {
+      "description": "Matt Pocock skills for real engineers \u2014 design, TDD, specs, review, triage",
+      "packages": [
+        "mattpocock/skills"
+      ],
+      "default": true,
+      "recommend_boost": 0.35
+    },
+    "mattpocock": {
+      "description": "Alias for @matt-skills (mattpocock/skills)",
+      "packages": [
+        "mattpocock/skills"
+      ],
+      "default": true,
+      "recommend_boost": 0.35
     },
     "starter": {
-      "description": "Lightweight onboarding — skill discovery + Vercel React patterns",
+      "description": "Lightweight onboarding \u2014 Matt Pocock skills + Vercel React patterns",
       "packages": [
-        "vercel-labs/skills",
+        "mattpocock/skills",
         "vercel-labs/agent-skills"
       ]
     },
     "nextjs": {
       "description": "Vercel React, Next.js, and React Native agent skills",
-      "packages": ["vercel-labs/agent-skills"]
+      "packages": [
+        "vercel-labs/agent-skills"
+      ]
     },
     "ecc": {
-      "description": "Everything Claude Code — large curated skill library",
-      "packages": ["affaan-m/everything-claude-code"]
+      "description": "Everything Claude Code \u2014 large curated skill library",
+      "packages": [
+        "affaan-m/everything-claude-code"
+      ]
     },
     "rust": {
       "description": "Rust patterns, testing, and review (via ECC)",
-      "packages": ["affaan-m/everything-claude-code"]
+      "packages": [
+        "affaan-m/everything-claude-code"
+      ]
     },
     "supervisor": {
-      "description": "Execution supervisor — token-efficient ops, must_apply discipline, anti-pattern memory",
+      "description": "Execution supervisor \u2014 token-efficient ops, must_apply discipline, anti-pattern memory",
       "bundle": "supervisor",
+      "packages": []
+    },
+    "product-layer": {
+      "description": "Constitution \u2192 feature spec lane \u2014 product-feature-spec skill + cursor rule",
+      "bundle": "product-layer",
+      "packages": []
+    },
+    "coding-policy": {
+      "description": "Strict engineering policy \u2014 inspect, implement natively, test, verify (Cursor/Claude/OpenCode/Augment)",
+      "bundle": "coding-policy",
       "packages": []
     }
   }
