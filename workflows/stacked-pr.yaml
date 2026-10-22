@@ -1,29 +1,50 @@
-name: Stacked PR
-version: 1
-min_spine_version: "0.8.0"
+name: Stacked PR & Delivery
+version: 2
+min_spine_version: "0.19.0"
 start_node: InspectStack
 
 nodes:
   - name: InspectStack
     kind: agent
-    description: "List stacked branches, base branch, and rebase order."
+    description: "Audit working tree and branch stack: check rebase order, identify modified symbols, and trace transitive callers (blast-radius)."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
 
-  - name: Rebase
+  - name: AtomicChunking
     kind: agent
-    description: "Rebase current branch onto updated base; surface conflicts."
+    description: "Split changes into reviewable atomic commits with Conventional Commit messages (feat, fix, refactor, test, docs). Verify zero narration comments via check-added-comments.sh."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
 
-  - name: ResolveConflicts
-    kind: agent
-    description: "Resolve merge conflicts with minimal scope; run targeted tests."
-
-  - name: Verify
+  - name: VerificationGate
     kind: checkpoint
-    description: "Run CI-equivalent checks before pushing updated stack."
+    description: "Run full allowlisted verification (.verify/run.sh all). Ensure all unit, static, and functional suites pass without weakening."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 1000
+
+  - name: RichDescription
+    kind: agent
+    description: "Draft rich PR body: Summary & Problem Intent, HLD with Mermaid flowchart/sequence chart, LLD data contracts, blast radius analysis, and evidence record."
+
+  - name: ApprovalGate
+    kind: approval_gate
+    description: "Human reviews the drafted PR description, HLD/LLD diagrams, and evidence record before push."
+
+  - name: PushBranch
+    kind: agent
+    description: "Push rebased branch to remote origin and present ready PR link."
 
 edges:
   - from: InspectStack
-    to: Rebase
-  - from: Rebase
-    to: ResolveConflicts
-  - from: ResolveConflicts
-    to: Verify
+    to: AtomicChunking
+  - from: AtomicChunking
+    to: VerificationGate
+  - from: VerificationGate
+    to: RichDescription
+  - from: RichDescription
+    to: ApprovalGate
+  - from: ApprovalGate
+    to: PushBranch

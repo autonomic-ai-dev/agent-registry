@@ -1,29 +1,35 @@
 name: Release Notes
-version: 1
-min_spine_version: "0.8.0"
+version: 2
+min_spine_version: "0.19.0"
 start_node: CollectDiff
 
 nodes:
   - name: CollectDiff
     kind: agent
-    description: "Gather git tag/range diff, commits, and changed files for the release."
+    description: "Gather git commit log, tag diff, and touched files across the release range. Group commits by conventional scope."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
 
-  - name: DraftChangelog
+  - name: DraftNotes
     kind: agent
-    description: "Write release notes from the diff — user-facing changes, breaking changes, contributors."
+    description: "Author release notes adhering to technical-writing standards (Diátaxis, Google Dev style, STE). State breaking changes, migrations, and user-observable features with real code symbols."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
 
   - name: ReviewGate
     kind: approval_gate
-    description: "Human reviews draft release notes before publish."
+    description: "Human reviews release notes draft and migration warnings before publishing."
 
   - name: Publish
     kind: agent
-    description: "Update CHANGELOG.md and prepare GitHub release text."
+    description: "Update CHANGELOG.md, commit, and prepare GitHub release payload."
 
 edges:
   - from: CollectDiff
-    to: DraftChangelog
-  - from: DraftChangelog
+    to: DraftNotes
+  - from: DraftNotes
     to: ReviewGate
   - from: ReviewGate
     to: Publish

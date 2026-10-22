@@ -1,8 +1,6 @@
 {
   "version": 1,
   "default_bootstrap": [
-    "@autonomic-core",
-    "@supervisor",
     "@agstack"
   ],
   "packages": {
@@ -16,20 +14,6 @@
       "path": "packages/agstack",
       "description": "Alias for agstack (Abhiuday Gupta Stack)",
       "recommend_boost": 0.35
-    },
-    "autonomic-core": {
-      "path": "packages/autonomic-core",
-      "description": "Registry discovery — find-skills and rmcp MCP gateway patterns",
-      "default": true
-    },
-    "supervisor": {
-      "path": "packages/supervisor",
-      "description": "Execution supervisor — token-efficient ops, must_apply discipline, anti-pattern memory",
-      "default": true
-    },
-    "product-layer": {
-      "path": "packages/product-layer",
-      "description": "Constitution → feature spec lane — product-feature-spec skill + cursor rule"
     },
     "matt-skills": {
       "git_url": "https://github.com/mattpocock/skills.git",
@@ -78,6 +62,7 @@
     "@release-notes": "workflows/release-notes.yaml",
     "@stacked-pr": "workflows/stacked-pr.yaml",
     "@bugfix": "workflows/bugfix.yaml",
+    "@feature": "workflows/feature.yaml",
     "@mcp-health-check": "workflows/mcp-health-check.yaml"
   }
 }

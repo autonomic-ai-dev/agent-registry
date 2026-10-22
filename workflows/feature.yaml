@@ -1,0 +1,77 @@
+name: Feature Lifecycle
+version: 2
+min_spine_version: "0.19.0"
+start_node: ContextAndIntent
+
+nodes:
+  - name: ContextAndIntent
+    kind: agent
+    description: "Read CONSTITUTION.md and feature specs (docs/features/*.md). Interrogate codebase routes, models, and dependencies directly to extract true problem intent without asking the user."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: ModelDomain
+    kind: agent
+    description: "Design immutable domain models, boundary validation schemas (Zod/serde), and state machines before control flow. Design deep interfaces adhering to existing repo patterns."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: FeatureContract
+    kind: agent
+    description: "Author or update .verify/features/<feature>.md enforcing 4-H2 sections and four-part step verification (Request, Why, Expected, Impact). Update features/README.md index."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: Implement
+    kind: agent
+    description: "Write minimal, undebloated code and focused unit tests (TDD). Adhere to strict immutability, zero narration comments, and KISS."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 1000
+
+  - name: VerificationSuites
+    kind: agent
+    description: "Author declarative functional API scenarios (.verify/functional/<feature>.hurl) paired 1:1 with feature contract steps."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 1000
+
+  - name: TestRun
+    kind: checkpoint
+    description: "Execute allowlisted phased runner: bash .verify/run.sh <feature> (doctor -> unit -> static -> functional)."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 1000
+
+  - name: QualityGate
+    kind: verify
+    description: "Execute static checks (checks/feature_coverage.sh) to guarantee 1:1 step-to-entry coverage. Ensure proof logs survive in .verify/artifacts/."
+
+  - name: ReviewGate
+    kind: approval_gate
+    description: "Human review gate: verify changeset against acceptance criteria, HLD architecture diagrams, and verification evidence."
+
+  - name: Summary
+    kind: agent
+    description: "Compile rich summary with HLD/LLD, update changelog/status, and persist durable lessons via store_memory."
+
+edges:
+  - from: ContextAndIntent
+    to: ModelDomain
+  - from: ModelDomain
+    to: FeatureContract
+  - from: FeatureContract
+    to: Implement
+  - from: Implement
+    to: VerificationSuites
+  - from: VerificationSuites
+    to: TestRun
+  - from: TestRun
+    to: QualityGate
+  - from: QualityGate
+    to: ReviewGate
+  - from: ReviewGate
+    to: Summary

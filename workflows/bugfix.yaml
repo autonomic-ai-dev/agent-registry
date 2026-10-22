@@ -1,24 +1,44 @@
 name: Bugfix Loop
-version: 1
-min_spine_version: "0.8.0"
+version: 2
+min_spine_version: "0.19.0"
 start_node: Reproduce
 
 nodes:
   - name: Reproduce
     kind: agent
-    description: "Reproduce the reported bug with minimal steps and capture logs."
+    description: "Analyze stack traces and logs. Construct a minimal failing test or reproduction script that reliably fails with concrete runtime output before touching production code."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
 
   - name: Isolate
     kind: agent
-    description: "Narrow root cause — bisect, trace, or minimal failing test."
+    description: "Attack the premise: isolate the fundamental root cause in core domain models or shared code rather than patching symptoms downstream."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
 
   - name: Fix
     kind: agent
-    description: "Implement the smallest correct fix."
+    description: "Implement the smallest complete fix adhering to strict immutability, boundary discipline, zero dead code, and no comments."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 1000
 
   - name: Verify
     kind: checkpoint
-    description: "Run tests and confirm the bug is fixed without regressions."
+    description: "Execute allowlisted verification suite (.verify/run.sh <feature>); confirm regression test passes on fixed code and fails on baseline."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 1000
+
+  - name: QualityGate
+    kind: verify
+    description: "Verify zero test weakening, zero newly added narration comments (scripts/check-added-comments.sh), and all proof logs survive in .verify/artifacts/."
+
+  - name: Review
+    kind: agent
+    description: "Execute adversarial interrogation; output 4-part findings (Must Fix, Should Fix, Nice to Have), lean assessment, and evidence record."
 
 edges:
   - from: Reproduce
@@ -27,3 +47,7 @@ edges:
     to: Fix
   - from: Fix
     to: Verify
+  - from: Verify
+    to: QualityGate
+  - from: QualityGate
+    to: Review

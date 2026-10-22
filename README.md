@@ -9,16 +9,13 @@ agent-registry/
 ├── registry.json                    # Canonical registry index
 ├── README.md                        # Documentation & CLI reference
 ├── packages/                        # Standardized curated packages
-│   ├── agstack/                     # agstack (Abhiuday Gupta Stack) — Universal engineering process, playbooks, strict verification, immutability, and zero comment slop
-│   ├── coding-policy/               # Legacy alias for agstack
-│   ├── autonomic-core/              # Registry discovery & rmcp MCP gateway patterns
-│   ├── product-layer/               # Constitution → feature spec lane
-│   └── supervisor/                  # Execution supervisor & token-efficient ops
+│   └── agstack/                     # agstack (Abhiuday Gupta Stack) — Universal full-SDLC engineering operating system
 ├── workflows/                       # Spine DAG workflows
-│   ├── release-notes.yaml
-│   ├── stacked-pr.yaml
-│   ├── bugfix.yaml
-│   └── mcp-health-check.yaml
+│   ├── bugfix.yaml                  # @bugfix — Failing repro -> root cause -> minimal fix -> verify -> review
+│   ├── feature.yaml                 # @feature — Intent -> model domain -> 4-H2 contract -> implement -> Hurl suites -> gate
+│   ├── stacked-pr.yaml              # @stacked-pr — Atomic chunking -> verification -> rich PR description -> approval
+│   ├── release-notes.yaml           # @release-notes — Diff collection -> Diátaxis notes -> review -> publish
+│   └── mcp-health-check.yaml        # @mcp-health-check — Schema audit -> gateway probe -> routing verify
 └── utilities/                       # CLI utility catalog
     └── utilities.json
 ```
@@ -35,5 +32,4 @@ Install packages directly from the synced registry:
 
 ```bash
 agent-brain package add @agstack
-agent-brain package add @autonomic-core
 ```

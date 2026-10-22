@@ -6,10 +6,11 @@ Use this playbook whenever you are adding new user-facing, API, CLI, or daemon b
 
 ## Process Steps
 
-### Step 1: Interrogate the Codebase (Autonomous Discovery)
+### Step 1: Interrogate Intent, Constitution & Codebase
+- If `CONSTITUTION.md` exists at repository root, read it to ground architecture, technical stack, and negative constraints.
+- If a product specification or issue exists (`docs/features/*.md`), map each planned implementation change to an explicit **acceptance criterion**.
 - Navigate source files to find router declarations, controllers, CLI command parsers, and configuration loaders.
-- Identify existing models, databases, and dependencies.
-- Never ask the user for facts visible in the repository.
+- Identify existing models, databases, and dependencies. Never ask the user for facts visible in the repository.
 
 ### Step 2: Model the Domain & Data Shape
 - Define core types, domain models, and boundary schemas (e.g., Zod, serde, Pydantic) before writing business logic.
