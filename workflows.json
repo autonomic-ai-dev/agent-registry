@@ -2,34 +2,39 @@
   "version": 1,
   "workflows": {
     "release-notes": {
-      "description": "Tag diff \u2192 changelog \u2192 review gate",
+      "description": "Tag diff → changelog → review gate",
       "path": "workflows/release-notes.yaml",
       "organ": "agent-spine",
-      "invoke": "agent-spine init --with @release-notes"
+      "invoke": "agent-spine init --with @release-notes",
+      "fallback": "bash scripts/run-workflow.sh run workflows/release-notes.yaml"
     },
     "stacked-pr": {
-      "description": "Rebase stacked branches \u2192 resolve conflicts \u2192 verify",
+      "description": "Rebase stacked branches → resolve conflicts → verify",
       "path": "workflows/stacked-pr.yaml",
       "organ": "agent-spine",
-      "invoke": "agent-spine init --with @stacked-pr"
+      "invoke": "agent-spine init --with @stacked-pr",
+      "fallback": "bash scripts/run-workflow.sh run workflows/stacked-pr.yaml"
     },
     "bugfix": {
-      "description": "Reproduce \u2192 isolate \u2192 fix \u2192 verify loop",
+      "description": "Reproduce → isolate → fix → verify loop",
       "path": "workflows/bugfix.yaml",
       "organ": "agent-spine",
-      "invoke": "agent-spine init --with @bugfix"
+      "invoke": "agent-spine init --with @bugfix",
+      "fallback": "bash scripts/run-workflow.sh run workflows/bugfix.yaml"
     },
     "mcp-health-check": {
-      "description": "agent-body schema audit \u2192 gateway probe \u2192 route_task MCP routing verify",
+      "description": "agent-body schema audit → gateway probe → route_task MCP routing verify",
       "path": "workflows/mcp-health-check.yaml",
       "organ": "agent-spine",
-      "invoke": "agent-spine init --with @mcp-health-check"
+      "invoke": "agent-spine init --with @mcp-health-check",
+      "fallback": "bash scripts/run-workflow.sh run workflows/mcp-health-check.yaml"
     },
-    "feature-from-spec": {
-      "description": "Constitution + feature spec \u2192 plan, implement, test, review",
-      "path": "workflows/feature-from-spec.yaml",
+    "feature": {
+      "description": "Context & intent → domain model → 4-H2 contract → implement → verify → security gate → review gate",
+      "path": "workflows/feature.yaml",
       "organ": "agent-spine",
-      "invoke": "agent-spine init --with feature-from-spec"
+      "invoke": "agent-spine init --with @feature",
+      "fallback": "bash scripts/run-workflow.sh run workflows/feature.yaml"
     }
   }
 }

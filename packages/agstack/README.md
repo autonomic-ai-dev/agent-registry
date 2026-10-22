@@ -54,6 +54,7 @@ agstack/
 │   │   └── references/                  # allowlist-and-runner, hurl-standards
 │   ├── security-audit/                  # Vulnerability scanning, secrets, OWASP, AST validation
 │   ├── jailbreak-defense/               # Prompt injection defense, delimiters, tool bounds
+│   ├── workflow-engine/                 # Autonomous DAG workflow self-orchestrator (zero-Spine)
 │   ├── no-comments/                     # Strip AI chatter, preserve documentation integrity
 │   ├── unslop/                          # Concise, direct, idiomatic code & prose
 │   ├── interrogate/                     # Adversarial pre-completion review
@@ -68,7 +69,9 @@ agstack/
 ├── .cursor/                             # Cursor-native mirrors
 └── scripts/
     ├── check-added-comments.sh          # Git pre-commit comment linter
-    └── install-git-hook.sh              # Hook installer
+    ├── install-git-hook.sh              # Hook installer
+    ├── run-workflow.py                  # Portable DAG workflow engine
+    └── run-workflow.sh                  # Shell wrapper for standalone workflow execution
 ```
 
 ---

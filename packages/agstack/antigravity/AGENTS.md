@@ -115,7 +115,20 @@ In repositories with `.verify/` (or when creating verification):
 
 ---
 
-## 10. Completion Standard & Evidence Record
+## 10. Workflow Orchestration (Dual-Mode: Spine & Autonomous Self-Orchestration)
+Repositories may define declarative DAG workflows under `workflows/*.yaml` (`@bugfix`, `@feature`, `@stacked-pr`, `@release-notes`, `@mcp-health-check`):
+- **When `agent-spine` is present:** Invoke workflows via `agent-spine run workflows/<name>.yaml` or MCP tool `spine_submit_workflow`.
+- **When `agent-spine` is NOT present:** The agent MUST act as the workflow engine directly (`workflow-engine`):
+  1. Parse `start_node`, `nodes`, and `edges` from the workflow YAML.
+  2. Sequentially execute each node along directed edges.
+  3. Fulfill `kind: agent` requirements using tools.
+  4. Execute `kind: checkpoint` / `verify` commands (`.verify/run.sh`, `check-added-comments.sh`) in bash and mandate exit code 0.
+  5. Halt at `kind: approval_gate`, present HLD/LLD deliverables and evidence, and await human sign-off before advancing.
+  6. Or execute via portable runner: `bash packages/agstack/scripts/run-workflow.sh run workflows/<name>.yaml`.
+
+---
+
+## 11. Completion Standard & Evidence Record
 - Do not claim success based on code inspection alone when verification is feasible.
 - Do not claim tests or builds passed unless they actually ran and passed.
 - Never describe code as "bug-free".

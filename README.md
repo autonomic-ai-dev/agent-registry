@@ -16,6 +16,8 @@ agent-registry/
 │   ├── stacked-pr.yaml              # @stacked-pr — Atomic chunking -> verification -> rich PR description -> approval
 │   ├── release-notes.yaml           # @release-notes — Diff collection -> Diátaxis notes -> review -> publish
 │   └── mcp-health-check.yaml        # @mcp-health-check — Schema audit -> gateway probe -> routing verify
+├── scripts/                         # Zero-dependency utilities
+│   └── run-workflow.sh              # Standalone DAG workflow engine (zero-Spine execution)
 └── utilities/                       # CLI utility catalog
     └── utilities.json
 ```
@@ -33,3 +35,13 @@ Install packages directly from the synced registry:
 ```bash
 agent-brain package add @agstack
 ```
+
+## Workflow Execution (Dual Mode)
+
+Workflows are designed to run in two modes:
+1. **With Spine:** `agent-spine run workflows/<name>.yaml` or MCP `spine_submit_workflow`.
+2. **Without Spine (Autonomous Agent Self-Orchestration):** Any agent directly executes the DAG using the `workflow-engine` skill, or runs the zero-dependency portable runner:
+   ```bash
+   ./scripts/run-workflow.sh run workflows/bugfix.yaml
+   ```
+
