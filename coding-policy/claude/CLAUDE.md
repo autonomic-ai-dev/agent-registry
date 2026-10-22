@@ -121,3 +121,10 @@ alwaysApply: true
 - Do not claim tests, builds, static analysis, or coverage passed unless they actually ran and passed.
 - Be concise but precise in the final report: implementation summary, key decisions, verification results, coverage scope/value, and known limitations.
 - If blocked, state the blocker and the next actionable step. Never conceal incomplete work.
+
+## 16. Feature mapping and verification harness (.verify/)
+- **Interrogate Code, Not User:** Discover endpoints, CLI flags, database seed requirements, and test frameworks by navigating repository source files directly. Never ask the user for details observable in the codebase.
+- **Inspect Feature Map:** In repositories with `.verify/features/`, check the relevant feature specification (`.verify/features/<feature>.md`) before modifying code to review sub-features, entry points, and known gotchas.
+- **Link Changes to Test Suites:** Every feature contract specifies its targeted unit tests and Hurl functional suites under `## Verification Suites`. Execute these targeted suites for rapid feedback.
+- **Run Trusted Verification:** Execute test commands via `agent-brain verify -- <cmd>` or `.verify/run.sh`. Commands must be allowlisted in `.verify/verify.toml`.
+- **Dual-Layer Coverage:** Pair unit tests with declarative API functional tests (`.verify/functional/*.hurl`) for backend and DevOps workflows. Preserve run proof in `.verify/artifacts/`.

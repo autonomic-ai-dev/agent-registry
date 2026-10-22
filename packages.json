@@ -21,15 +21,7 @@
       ]
     },
     "matt-skills": {
-      "description": "Matt Pocock skills for real engineers \u2014 design, TDD, specs, review, triage",
-      "packages": [
-        "mattpocock/skills"
-      ],
-      "default": true,
-      "recommend_boost": 0.35
-    },
-    "mattpocock": {
-      "description": "Alias for @matt-skills (mattpocock/skills)",
+      "description": "Matt Pocock skills for real engineers — design, TDD, specs, review, triage",
       "packages": [
         "mattpocock/skills"
       ],
@@ -72,7 +64,7 @@
       "packages": []
     },
     "coding-policy": {
-      "description": "Strict engineering policy \u2014 inspect, implement natively, test, verify (Cursor/Claude/OpenCode/Augment)",
+      "description": "Unified engineering & verification bundle — strict code policy, feature maps (.verify/features/), unit tests, and Hurl API verification",
       "bundle": "coding-policy",
       "packages": []
     }

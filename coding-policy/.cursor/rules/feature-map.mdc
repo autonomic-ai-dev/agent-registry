@@ -1,0 +1,21 @@
+---
+description: Feature map contract policy for backend & DevOps tools — enforce strict 4-H2 structure and test linkage under .verify/
+alwaysApply: true
+---
+
+# Feature Map Policy (.verify)
+
+When a repository contains `.verify/` or when authoring, modifying, or verifying features:
+
+1. **Strict 4-H2 Contract:** Every `.verify/features/<feature>.md` MUST follow the exact 4-section format in this order:
+   - `## Sub-features`: Atomic kebab-case IDs with 1-sentence behaviors.
+   - `## How to get to it (user POV)`: User, CLI, or API entry points.
+   - `## Verification Suites (Targeted Test Commands)`: Explicit unit test command and `.verify/functional/<feature>.hurl` scenario.
+   - `## Gotchas`: Operational traps, debounce, and concurrency issues.
+2. **Zero Placeholders:** Never output `<token>`, `<id>`, or `TODO`. Commands must be literal and executable.
+3. **Mandatory Test Linkage:** Every feature MUST specify its exact unit and functional Hurl test commands under Section 3.
+4. **Never Weaken Assertions:** Never weaken assertions, delete sub-features, or bypass broken steps to manufacture a passing run.
+5. **Pre-flight & Post-flight Invariants:**
+   - Execute `.verify/doctor.sh` before driving.
+   - Run targeted suites via `agent-brain verify -- <cmd>`.
+   - Ensure all output logs in `.verify/artifacts/` survive teardown.
