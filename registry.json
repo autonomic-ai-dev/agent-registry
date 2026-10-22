@@ -10,11 +10,6 @@
       "default": true,
       "recommend_boost": 0.40
     },
-    "coding-policy": {
-      "path": "packages/agstack",
-      "description": "Alias for agstack (Abhiuday Gupta Stack)",
-      "recommend_boost": 0.35
-    },
     "matt-skills": {
       "git_url": "https://github.com/mattpocock/skills.git",
       "git_ref": "main",
