@@ -77,13 +77,24 @@ alwaysApply: true
 
 ---
 
-## 7. Migrations & Backward Compatibility
+## 7. Security, Vulnerability Auditing & Jailbreak Defense (`security-audit`, `jailbreak-defense`)
+Security and prompt injection defense are non-negotiable engineering requirements:
+- **Zero Secrets in Code:** Never commit credentials, API keys, or private tokens. All secrets must be validated at service startup with strict fail-fast schemas.
+- **Strict Delimiter Isolation:** Never interpolate untrusted user input or external data directly into instructions. Wrap in strict delimiters (e.g. `<untrusted_user_input>`), sanitize delimiter collision sequences, and anchor system prompts with immutable precedence rules.
+- **Least Privilege & Excessive Agency Prevention:** Tool execution must be tightly scoped and parameterized. High-impact operations (destructive mutations, schema drops, privilege changes) require explicit approval gates (`mouth_request_approval`).
+- **OWASP Top 10 Defenses:** Mandatory parameterized queries for SQL, AST/vector validation for shell commands, strict path canonicalization against traversal (`..`), and whitelist validation against SSRF.
+- **Dependency & Supply Chain Audits:** Lockfiles must be maintained and verified via automated audits (`cargo audit`, `npm audit`, `pip-audit`, `govulncheck`).
+- **Automated Security Tests:** Every feature touching untrusted input must include adversarial test cases in `.verify/` verifying resistance against injection, jailbreaks, and unauthorized tool invocation.
+
+---
+
+## 8. Migrations & Backward Compatibility
 - Preserve backward compatibility unless a breaking change is explicitly requested and approved.
 - Every schema, data, or configuration migration must ship with a tested rollback. If a migration is one-way, document the rationale and approval before execution.
 
 ---
 
-## 8. Verification & Harness Standards (`.verify/`)
+## 9. Verification & Harness Standards (`.verify/`)
 In repositories with `.verify/` (or when creating verification):
 1. **Strict 4-H2 Feature Contract:** Every `.verify/features/<feature>.md` enforces exactly four sections in order:
    - `## Sub-features`: Atomic kebab-case identifiers with intent, behavior, and outcome.
@@ -104,7 +115,7 @@ In repositories with `.verify/` (or when creating verification):
 
 ---
 
-## 9. Completion Standard & Evidence Record
+## 10. Completion Standard & Evidence Record
 - Do not claim success based on code inspection alone when verification is feasible.
 - Do not claim tests or builds passed unless they actually ran and passed.
 - Never describe code as "bug-free".

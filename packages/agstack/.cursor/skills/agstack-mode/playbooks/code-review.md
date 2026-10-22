@@ -13,11 +13,13 @@ Use this playbook before declaring any task complete, opening a pull request, or
   - Run `scripts/check-added-comments.sh` to guarantee no AI narration comments were introduced.
 
 ### Step 2: Adversarial Security, Concurrency & Lean Audit
-- Ground in the `interrogate` and `token-efficiency` skills:
-  - Are inputs validated and parameterized against SQL/command injection?
-  - Do external calls have explicit timeouts?
-  - Are retries bounded with backoff and jitter?
-  - Do error paths release locks, file handles, and database connections?
+- Ground in `security-audit`, `jailbreak-defense`, `interrogate`, and `token-efficiency`:
+  - **Secrets:** Verify no tokens, passwords, keys, or .env values were touched or added.
+  - **Jailbreak & Prompt Injection Defense:** Are external or user inputs segregated with delimiters (`<untrusted_input>`)? Are delimiter escape collisions handled?
+  - **Injection & Boundaries:** Are inputs validated and parameterized against SQL/command injection? Are file paths canonicalized against traversal?
+  - **Excessive Agency:** Are destructive tool operations gated with approval?
+  - **Concurrency & Timeouts:** Do external calls have explicit timeouts? Are retries bounded with backoff and jitter?
+  - **Resource Cleanup:** Do error paths release locks, file handles, and database connections?
   - **Lean check:** Is every added line needed? Can we delete dead code or reuse an existing helper?
 
 ### Step 3: Blast Radius & Regression Verification

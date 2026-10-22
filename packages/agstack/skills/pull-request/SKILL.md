@@ -63,6 +63,12 @@ flowchart TD
 - **Downstream Impact:** Zero breaking changes on existing clients (backward compatible).
 - **Residual Risk:** Any operational gotcha or unconfirmed live value noted in feature contract.
 
+## Security & Prompt Defense Audit
+- **Secret Scanning:** Zero hardcoded credentials or keys committed.
+- **Jailbreak & Prompt Injection Defense:** All untrusted user and external content isolated inside `<untrusted_input>` delimiters; escaping collisions handled.
+- **Boundary Validation:** Parameterized queries used; shell commands vector-passed and AST validated.
+- **Dependency Audit:** Zero high or critical vulnerabilities (`cargo audit` / `npm audit`).
+
 ## Verification & Evidence Record
 Verification executed through the allowlisted harness (\`.verify/run.sh\`):
 

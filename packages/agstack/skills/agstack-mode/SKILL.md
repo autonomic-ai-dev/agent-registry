@@ -15,14 +15,15 @@ flowchart TD
         P2 --> P3["3. Undebloated Implementation"]
         P3 --> P4["4. Forensics & Bug Repro"]
         P4 --> P5["5. Test Generation & Verification"]
-        P5 --> P6["6. Adversarial Code Review"]
-        P6 --> P7["7. Technical Writing & Docs"]
+        P5 --> P6["6. Security & Jailbreak Defense"]
+        P6 --> P7["7. Adversarial Code Review"]
+        P7 --> P8["8. Technical Writing & Docs"]
     end
 ```
 
 ---
 
-## The 10 SDLC Playbooks
+## The 11 SDLC Playbooks
 
 | Phase | Playbook | Purpose & Invariant |
 |---|---|---|
@@ -32,6 +33,7 @@ flowchart TD
 | **Feature** | [`feature`](playbooks/feature.md) | Model domain data shape; author 4-H2 contract & 4-part steps; TDD; pair with functional Hurl suite. |
 | **Refactor** | [`refactoring`](playbooks/refactoring.md) | Baseline tests must pass; subtract debloat; collapse wrappers; enforce immutability; prove invariance. |
 | **Testing** | [`test-suite-generation`](playbooks/test-suite-generation.md) | Author targeted unit tests + declarative Hurl suites for changed code; maintain 1:1 step coverage. |
+| **Security** | [`security-and-jailbreak-defense`](playbooks/security-and-jailbreak-defense.md) | Threat modeling, delimiter isolation, jailbreak/injection defense, secrets audit, SAST & dependency scans. |
 | **Review** | [`code-review`](playbooks/code-review.md) | Adversarial audit (security, concurrency, error paths); verify blast radius; zero test weakening. |
 | **Docs** | [`technical-writing`](playbooks/technical-writing.md) | Layered documentation standard (Diátaxis, Google Dev style, STE); real symbols; zero AI fluff. |
 | **Delivery** | [`pull-request`](playbooks/pull-request.md) | Atomic chunked commits; rich description with HLD Mermaid charts, LLD, blast radius, evidence record. |

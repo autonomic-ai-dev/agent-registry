@@ -50,6 +50,10 @@ nodes:
     kind: verify
     description: "Execute static checks (checks/feature_coverage.sh) to guarantee 1:1 step-to-entry coverage. Ensure proof logs survive in .verify/artifacts/."
 
+  - name: SecurityGate
+    kind: verify
+    description: "Scan for hardcoded credentials, verify input delimiter isolation and prompt injection defenses, and run dependency vulnerability audits."
+
   - name: ReviewGate
     kind: approval_gate
     description: "Human review gate: verify changeset against acceptance criteria, HLD architecture diagrams, and verification evidence."
@@ -72,6 +76,8 @@ edges:
   - from: TestRun
     to: QualityGate
   - from: QualityGate
+    to: SecurityGate
+  - from: SecurityGate
     to: ReviewGate
   - from: ReviewGate
     to: Summary

@@ -11,7 +11,7 @@
 AI agents without a strict process produce slop: commentary that restates obvious code, fragile workarounds, unverified claims, and hallucinated fixes. 
 
 Inspired by [pstack](https://github.com/cursor/plugins/tree/main/pstack), **`agstack`** adapts rigorous software practices into an agentic framework:
-- **Full-SDLC Playbooks (`agstack-mode`):** Dedicated step-by-step procedures covering every lifecycle phase: `context-and-intent`, `design-and-architecture`, `bug-fix`, `feature`, `refactoring`, `test-suite-generation`, `code-review`, `technical-writing`, `prototype`, and `autonomous-run`.
+- **Full-SDLC Playbooks (`agstack-mode`):** Dedicated step-by-step procedures covering every lifecycle phase: `context-and-intent`, `design-and-architecture`, `bug-fix`, `feature`, `refactoring`, `test-suite-generation`, `security-and-jailbreak-defense`, `code-review`, `technical-writing`, `prototype`, and `autonomous-run`.
 - **Interrogate Code, Never the User:** Agents discover entry points, ports, and schemas by navigating the codebase.
 - **Deep Architecture & Patterns:** Conforming strictly to the repository's existing architecture, ADRs, and caller ergonomics (`architect`).
 - **Forensics & Bug Repro:** Diagnosing stack traces, parsing logs, and proving bugs with failing runtime reproductions *before* writing any fix (`forensics`).
@@ -52,6 +52,8 @@ agstack/
 │   ├── verification/                    # Verification harness runner & allowlist
 │   │   ├── SKILL.md
 │   │   └── references/                  # allowlist-and-runner, hurl-standards
+│   ├── security-audit/                  # Vulnerability scanning, secrets, OWASP, AST validation
+│   ├── jailbreak-defense/               # Prompt injection defense, delimiters, tool bounds
 │   ├── no-comments/                     # Strip AI chatter, preserve documentation integrity
 │   ├── unslop/                          # Concise, direct, idiomatic code & prose
 │   ├── interrogate/                     # Adversarial pre-completion review

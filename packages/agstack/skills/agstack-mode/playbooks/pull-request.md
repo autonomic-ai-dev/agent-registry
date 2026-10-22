@@ -34,6 +34,7 @@ Use this playbook whenever you are preparing, chunking, and opening a ready pull
   - **Low-Level Design (LLD):** Data contracts, interface signatures, error models, and rollback plan.
   - **Commit Log:** Atomic chunk progression.
   - **Blast Radius:** Callers verified, downstream impact.
+  - **Security & Injection Defense:** Zero secrets committed, dependency audit clean, delimiter boundaries and prompt injection defenses verified.
   - **Evidence Record:** Table with commands, exit codes, and coverage metrics.
 
 ### Step 5: Final Sanity Check
