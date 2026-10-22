@@ -19,12 +19,14 @@ coding-policy/
 │   │   ├── coding-policy.mdc  # Core engineering policy rule
 │   │   ├── feature-map.mdc    # Feature map policy (.verify/features/)
 │   │   └── verification.mdc   # Test verification policy (verify.toml + Hurl)
-│   └── skills/
-│       ├── feature-map/       # Feature map generator skill
-│       └── verification/      # Test verification harness skill
-├── skills/
-│   ├── feature-map/SKILL.md   # Agent-agnostic feature-map skill
-│   └── verification/SKILL.md  # Agent-agnostic verification skill
+│   └── skills/                # the skills; installed as-is into each agent's skill location
+│       ├── feature-map/
+│       │   ├── SKILL.md       # entry point: which reference to load for which task
+│       │   ├── references/    # contract format, authoring rules, layout and gates
+│       │   └── scripts/       # entry-coverage check, coverage floor, gate report
+│       └── verification/
+│           ├── SKILL.md       # entry point and invariants
+│           └── references/    # allowlist and runner, Hurl standards
 ├── antigravity/AGENTS.md      # Antigravity CLI instructions
 ├── claude/CLAUDE.md           # Claude Code instructions
 ├── opencode/AGENTS.md         # OpenCode instructions
@@ -40,14 +42,9 @@ coding-policy/
 
 ## Install
 
-```bash
-agent-brain install @coding-policy
-```
+Copy each platform file to the location your agent host reads, as listed in the file tree above. A host package manager that supports this bundle can install it in the same way.
 
-Or via project initialization:
-```bash
-agent-brain verify init
-```
+For a repository that uses the verification harness, create `.verify/` with `verify.toml`, `run.sh`, `doctor.sh`, `features/`, and `functional/` as described in the feature-map and verification skills.
 
 ---
 
@@ -59,10 +56,9 @@ agent-brain verify init
 2. **Implement Code:**
    - Adhere to native tools, strict immutability, and no stray comments.
 3. **Execute Linked Verification:**
-   - Run the exact targeted unit and Hurl test commands specified under `## Verification Suites`:
+   - Run the exact targeted unit and Hurl test commands specified under `## Verification Suites`, through the allowlist in `.verify/verify.toml`:
      ```bash
-     agent-brain verify -- <unit-test-command>
-     agent-brain verify -- hurl --test .verify/functional/<feature>.hurl
+     sh .verify/run.sh <feature>
      ```
 4. **Preserve Proof:**
    - Ensure all output logs and reports are captured under `.verify/artifacts/`.

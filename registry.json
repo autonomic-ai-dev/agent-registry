@@ -8,7 +8,7 @@
   "packages": {
     "coding-policy": {
       "path": "packages/coding-policy",
-      "description": "Unified engineering & verification bundle — clean code policy, feature maps (.verify/features/), unit tests, and Hurl API verification",
+      "description": "Unified engineering & verification bundle — strict code policy, feature maps (.verify/features/), four-part step verification, and quality gates",
       "default": true,
       "recommend_boost": 0.35
     },

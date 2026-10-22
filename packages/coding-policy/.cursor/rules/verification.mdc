@@ -7,7 +7,7 @@ alwaysApply: true
 
 When working in a repository with `.verify/` or implementing backend features:
 
-1. **Verify via Allowlist:** Always run test commands through `agent-brain verify -- <cmd>` (or execute `.verify/run.sh`). Only commands registered in `.verify/verify.toml` are treated as trusted verification.
+1. **Verify via Allowlist:** Always run test commands through the allowlisted entry point, `.verify/run.sh`, or through a host wrapper that enforces the same allowlist. Only commands registered in `.verify/verify.toml` are treated as trusted verification.
 2. **Dual-Layer Testing:**
    - Every code change must have corresponding **unit tests** (Cargo, pytest, Jest, Go).
    - Every user-facing or API change must have corresponding **functional tests** in `.verify/functional/*.hurl`.
