@@ -31,5 +31,23 @@ Before declaring any change complete or opening a pull request, run an adversari
 - Is there any test that was commented out, weakened, or bypassed?
 - Are any new failure modes unobservable in metrics or logs?
 
-## Report
-List any identified weaknesses, fix them, or document them explicitly under `## Gotchas` in the feature map contract before completing the task.
+## Review Findings Structure
+
+Format all review findings into three clear groups:
+1. **Must Fix:** Crashes, security holes, data loss, broken callers outside the diff, race conditions under load.
+2. **Should Fix:** Risky logic without a regression test, significant performance regressions, bloated boilerplate that should not exist.
+3. **Nice to Have:** Minor speed-ups, shorter idiomatic formulations.
+
+Every individual finding must contain all four parts:
+```markdown
+1. **[Finding Title]** (`path/to/file.ts:L40-L55`)
+   - **What this is:** What the code does in plain words.
+   - **Problem:** The concrete case or input that causes failure.
+   - **Fix:** The smallest fix that solves it (prefer deleting code).
+   - **If we skip it:** The observable failure that will occur in production.
+```
+
+End the review with an unambiguous verdict:
+- `Verdict: Ship.` OR `Verdict: Fix 1 and 3 first.`
+- `Lean: -<N> lines possible.` (when bloated code can be removed)
+- `Not checked:` one line stating any boundary that could not be verified.

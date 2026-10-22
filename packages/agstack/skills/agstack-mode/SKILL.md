@@ -34,6 +34,7 @@ flowchart TD
 | **Testing** | [`test-suite-generation`](playbooks/test-suite-generation.md) | Author targeted unit tests + declarative Hurl suites for changed code; maintain 1:1 step coverage. |
 | **Review** | [`code-review`](playbooks/code-review.md) | Adversarial audit (security, concurrency, error paths); verify blast radius; zero test weakening. |
 | **Docs** | [`technical-writing`](playbooks/technical-writing.md) | Layered documentation standard (Diátaxis, Google Dev style, STE); real symbols; zero AI fluff. |
+| **Delivery** | [`pull-request`](playbooks/pull-request.md) | Atomic chunked commits; rich description with HLD Mermaid charts, LLD, blast radius, evidence record. |
 | **Explore** | [`prototype`](playbooks/prototype.md) | Settle architectural forks and performance trade-offs empirically; clean disposal. |
 | **Execution** | [`autonomous-run`](playbooks/autonomous-run.md) | Milestone decomposition; hard gate stop on any failure; self-contained evidence record. |
 
@@ -41,10 +42,11 @@ flowchart TD
 
 ## Core Principles Grounding Every Playbook
 
-Every step in every playbook is strictly governed by the 6 core principles:
+Every step in every playbook is strictly governed by the core principles:
 1. **Foundational Thinking (`skills/principles/foundational-thinking/`):** Types, entities, and state machines come first. Make illegal states unrepresentable.
 2. **Boundary Discipline (`skills/principles/boundary-discipline/`):** Validate at system edges (Zod/serde); trust internal typed models.
 3. **Immutability First (`skills/principles/immutability-first/`):** Never mutate in place; always return updated copies.
-4. **Test Behavior Not Implementation (`skills/principles/test-behavior-not-implementation/`):** Verify observable outcomes; mock only true external boundaries.
-5. **Fix Root Causes (`skills/principles/fix-root-causes/`):** Attack the premise; never patch around symptoms or write workaround sermons.
-6. **Never Block on the Human (`skills/principles/never-block-on-human/`):** Interrogate the codebase and run empirical experiments. Never ask what the code or tests can answer.
+4. **Smallest Complete Change & Token Efficiency (`skills/principles/smallest-complete-change/`):** Inspired by ponytail — rethink if code is needed; reuse existing repo code, standard library, or installed dependencies; small blast radius.
+5. **Test Behavior Not Implementation (`skills/principles/test-behavior-not-implementation/`):** Verify observable outcomes; mock only true external boundaries.
+6. **Fix Root Causes (`skills/principles/fix-root-causes/`):** Attack the premise; never patch around symptoms or write workaround sermons.
+7. **Never Block on the Human (`skills/principles/never-block-on-human/`):** Interrogate the codebase and run empirical experiments. Never ask what the code or tests can answer.

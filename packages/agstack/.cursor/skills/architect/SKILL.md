@@ -15,18 +15,26 @@ Before writing implementation logic that crosses module or function boundaries, 
 - **Trace Design Docs & ADRs:** Read `docs/`, `rfcs/`, `adr/`, and previous PR descriptions to understand architectural decisions and constraints.
 - **Model the Domain First:** Define core types, data shapes, and state transitions before control flow. Make illegal states unrepresentable (`principle-foundational-thinking`).
 
-### Phase 2: Interface Depth & Caller Ergonomics
-- **Deep Interfaces, Shallow Complexity:** Design interfaces that hide maximum internal complexity behind a small, simple public API. Avoid scattering capability across dozens of micro-classes or pass-through proxy functions.
-- **Boundary Discipline:** Enforce schema validation at edges (`principle-boundary-discipline`); keep internal domain types clean and pure.
-- **Immutability First:** Models must be immutable (`principle-immutability-first`).
+### Phase 2: High-Level Design (HLD) with Mermaid Diagrams
+- Every substantial architectural design must include an HLD diagram:
+  - **Component Flowchart:** Illustrates system boundaries, controllers, services, databases, and message brokers.
+  - **Sequence Diagram:** Traces request/response lifetimes, asynchronous worker dispatches, and timeout gates.
+- Always validate Mermaid syntax: quote labels with special characters, use standard flowchart (`graph TD` / `flowchart LR`) or sequence (`sequenceDiagram`) types.
 
-### Phase 3: Screen Against Red Flags
+### Phase 3: Low-Level Design (LLD)
+- Detail the low-level contracts:
+  - **Schemas & Invariants:** Boundary validation schemas (Zod/serde) and domain invariants.
+  - **Interface Depth & Caller Ergonomics:** Deep interfaces hiding internal complexity behind a compact public surface.
+  - **Error Models:** Explicit failure modes, domain errors, and recovery strategies.
+  - **Concurrency & Resource Lifecycle:** Lock acquisition order, timeout bounds, and release semantics.
+
+### Phase 4: Screen Against Red Flags
 - Screen the design before writing code:
-  - ❌ Speculative abstraction: interfaces with only one foreseeable implementation.
+  - ❌ Speculative abstraction: interfaces with only one foreseeable implementation (YAGNI).
   - ❌ Leaky abstractions: internal implementation details leaking into public signatures.
   - ❌ Deep nesting: more than 3-4 levels of hierarchy.
   - ❌ Excessive signal threading: passing unnecessary context objects through layers that do not use them.
 
-### Phase 4: Implementation Against the Contract
+### Phase 5: Implementation Against the Contract
 - Implement against the approved architectural sketch.
 - Deviations during implementation are signals to re-evaluate the architecture, not friction to absorb silently.

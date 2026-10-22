@@ -19,7 +19,12 @@ Ground architectural and implementation decisions in these core principles:
    - Never mutate existing objects or arrays in place.
    - Return updated copies; prevent hidden side effects and concurrency bugs.
 
-4. **Test Behavior Not Implementation (`skills/principles/test-behavior-not-implementation/`):**
+4. **Smallest Complete Change & Token Efficiency (`skills/principles/smallest-complete-change/`):**
+   - Inspired by ponytail: the best code is the code never written.
+   - Before writing code, rethink whether it is needed. Reuse existing repo helpers, standard library, or installed dependencies.
+   - Minimal blast radius: touch the smallest set of files necessary. Do not churn untouched lines.
+
+5. **Test Behavior Not Implementation (`skills/principles/test-behavior-not-implementation/`):**
    - Assert observable behavior and return values.
    - Mock only at genuine system boundaries (network, external service, clock).
 
