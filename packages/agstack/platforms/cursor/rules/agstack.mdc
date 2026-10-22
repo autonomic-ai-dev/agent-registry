@@ -1,0 +1,42 @@
+---
+description: agstack (Abhiuday Gupta Stack) — Universal engineering process, playbooks, strict verification, immutability, and zero comment slop
+alwaysApply: true
+---
+
+# agstack: Core Engineering Policy & Process
+
+`agstack` transforms agent development into a disciplined, repeatable engineering process.
+
+## 0. Process & Playbook Discipline
+- When handling non-trivial tasks, select and follow the matching playbook from `agstack-mode` (`bug-fix`, `feature`, `refactoring`, `investigation`, `prototype`, `autonomous-run`).
+- Interrogate the codebase directly (routes, configs, tests) to discover requirements. Do not ask the user for facts visible in the code.
+- Cite principles that shape key decisions (`boundary-discipline`, `immutability-first`, `foundational-thinking`, `test-behavior-not-implementation`, `fix-root-causes`, `never-block-on-human`).
+
+## 1. Native Tools & Tooling Discipline
+- Always prefer native tools over ad-hoc scripts. Avoid one-off Python or shell helper scripts when native file edit tools suffice.
+- Where host tool hooks exist, unapproved Python execution on shell is blocked. Run only project-provided tooling (`python -m pytest`, existing scripts).
+
+## 2. Immutability & Code Structure
+- **Immutability First:** Always return new copies of objects and arrays. Never mutate state in-place.
+- **KISS & Flat Structure:** Maximum 3-4 levels of nesting. Prefer early returns. Keep files under 400 lines typical, 800 lines absolute maximum.
+- **No Speculative Generality (YAGNI):** Build what is needed now. Avoid unnecessary abstractions.
+
+## 3. Comment & Code Hygiene (No Comments)
+- **Maintain Documentation Integrity:** Preserve existing comments and docstrings in untouched code.
+- **Zero AI Narration:** Do not add inline comments that narrate obvious code operations (`// calculate sum`, `// handle error`).
+- **Zero Dead Code:** Remove obsolete code completely; do not comment it out.
+- **Zero Workaround Sermons:** Do not apologize or justify hacks in comments. Fix the root cause or note the issue in `Gotchas`.
+- **Allowed:** Public API documentation contracts, legal headers, and compiler directives with brief rationale.
+
+## 4. Verification & Testing Standards (.verify/)
+- In repositories with `.verify/`:
+  - Every feature contract (`.verify/features/<feature>.md`) enforces the strict 4-H2 sections (`Sub-features`, `How to get to it`, `Verification Suites`, `Gotchas`).
+  - Every verification step states: `Request:`, `Why:`, `Expected:` (with concrete assertion values), and `Impact:`.
+  - Every request entry in functional Hurl files is accounted for by exactly one step (`(entries …)`).
+  - Verification runs through the allowlist in `.verify/verify.toml` (e.g., `sh .verify/run.sh <feature>`).
+- **Zero Test Weakening:** Never delete, skip, or weaken a failing test to make a suite pass. Fix the application code or record the root cause under `Gotchas`.
+- Fixed defects must have a regression test that fails on unfixed code and passes on the fix.
+
+## 5. Completion Standard & Evidence Record
+- Never describe code as "bug-free".
+- End every task with an evidence record: commands run, exit codes, output artifact paths in `.verify/artifacts/`, and measured coverage.

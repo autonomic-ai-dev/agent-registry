@@ -3,13 +3,18 @@
   "default_bootstrap": [
     "@autonomic-core",
     "@supervisor",
-    "@coding-policy"
+    "@agstack"
   ],
   "packages": {
-    "coding-policy": {
-      "path": "packages/coding-policy",
-      "description": "Unified engineering & verification bundle — strict code policy, feature maps (.verify/features/), four-part step verification, and quality gates",
+    "agstack": {
+      "path": "packages/agstack",
+      "description": "agstack (Abhiuday Gupta Stack) — Universal engineering process, playbooks, strict verification (.verify/), immutability, and zero comment slop",
       "default": true,
+      "recommend_boost": 0.40
+    },
+    "coding-policy": {
+      "path": "packages/agstack",
+      "description": "Alias for agstack (Abhiuday Gupta Stack)",
       "recommend_boost": 0.35
     },
     "autonomic-core": {

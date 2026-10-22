@@ -9,7 +9,8 @@ agent-registry/
 ├── registry.json                    # Canonical registry index
 ├── README.md                        # Documentation & CLI reference
 ├── packages/                        # Standardized curated packages
-│   ├── coding-policy/               # Strict engineering policy, feature-map, and verification
+│   ├── agstack/                     # agstack (Abhiuday Gupta Stack) — Universal engineering process, playbooks, strict verification, immutability, and zero comment slop
+│   ├── coding-policy/               # Legacy alias for agstack
 │   ├── autonomic-core/              # Registry discovery & rmcp MCP gateway patterns
 │   ├── product-layer/               # Constitution → feature spec lane
 │   └── supervisor/                  # Execution supervisor & token-efficient ops
@@ -33,6 +34,6 @@ agent-brain registry sync
 Install packages directly from the synced registry:
 
 ```bash
-agent-brain package add @coding-policy
+agent-brain package add @agstack
 agent-brain package add @autonomic-core
 ```
