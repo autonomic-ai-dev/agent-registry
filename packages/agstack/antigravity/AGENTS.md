@@ -17,14 +17,18 @@ alwaysApply: true
 
 ---
 
-## 1. Process & Playbook Discipline (`agstack-mode`)
-Before modifying code or executing broad commands, match the task to its dedicated playbook:
-- **`bug-fix`:** 1. Reproduce with runtime proof -> 2. Root cause analysis -> 3. Minimal fix -> 4. Regression test passes & repro fails without fix -> 5. Verification suite.
-- **`feature`:** 1. Interrogate codebase -> 2. Model domain & data shape -> 3. Author 4-H2 contract & 4-part steps -> 4. TDD -> 5. Pair with functional Hurl scenario -> 6. Quality gates.
-- **`refactoring`:** 1. Baseline tests pass -> 2. Subtract before adding -> 3. Collapse wrappers & enforce immutability -> 4. Prove behavioral invariance.
-- **`investigation`:** 1. Trace source code -> 2. Cite exact file and line references -> 3. Settle ambiguities empirically; zero guessing.
-- **`prototype`:** 1. Formulate empirical question -> 2. Build isolated throwaway prototype -> 3. Measure & compare -> 4. Settle decision cleanly.
-- **`autonomous-run`:** 1. Milestone decomposition -> 2. Continuous verification -> 3. Hard gate stop on failure -> 4. Preserve proof in `.verify/artifacts/`.
+## 1. Full-SDLC Process & Playbook Discipline (`agstack-mode`)
+`agstack` covers the entire Software Development Lifecycle. Before modifying code or executing broad commands, match the task to its dedicated playbook:
+- **`context-and-intent`:** Interrogate design docs, ADRs, PR history, and git logs; extract true problem intent without asking the user.
+- **`design-and-architecture`:** Follow existing repository design patterns strictly; model domain and core types before control flow; evaluate interface depth.
+- **`bug-fix`:** Analyze stack traces and logs; construct failing runtime reproduction *before* touching code; fix root cause; pair with regression test.
+- **`feature`:** Interrogate codebase; model domain data shape; author 4-H2 contract & 4-part steps; TDD; pair with functional Hurl scenario; quality gates.
+- **`refactoring`:** Baseline tests pass first; subtract dead weight before adding; collapse wrappers; enforce immutability; prove behavioral invariance.
+- **`test-suite-generation`:** Author targeted unit tests and functional Hurl suites based on changed code; maintain 1:1 step-to-entry coverage.
+- **`code-review`:** Adversarial audit across security, concurrency, error paths, and resource leaks; analyze blast radius; zero test weakening.
+- **`technical-writing`:** Author clear, layered docs (Diátaxis, Google Dev style, STE); use real code symbols; eliminate AI fluff.
+- **`prototype`:** Settle architectural forks and performance trade-offs empirically; clean disposal.
+- **`autonomous-run`:** Milestone decomposition; continuous verification; hard gate stop on any failure; self-contained evidence record.
 
 ---
 

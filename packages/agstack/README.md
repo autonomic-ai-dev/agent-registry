@@ -11,11 +11,15 @@
 AI agents without a strict process produce slop: commentary that restates obvious code, fragile workarounds, unverified claims, and hallucinated fixes. 
 
 Inspired by [pstack](https://github.com/cursor/plugins/tree/main/pstack), **`agstack`** adapts rigorous software practices into an agentic framework:
-- **Playbooks First (`agstack-mode`):** Dedicated step-by-step procedures for `bug-fix`, `feature`, `refactoring`, `investigation`, `prototype`, and `autonomous-run`.
+- **Full-SDLC Playbooks (`agstack-mode`):** Dedicated step-by-step procedures covering every lifecycle phase: `context-and-intent`, `design-and-architecture`, `bug-fix`, `feature`, `refactoring`, `test-suite-generation`, `code-review`, `technical-writing`, `prototype`, and `autonomous-run`.
 - **Interrogate Code, Never the User:** Agents discover entry points, ports, and schemas by navigating the codebase.
+- **Deep Architecture & Patterns:** Conforming strictly to the repository's existing architecture, ADRs, and caller ergonomics (`architect`).
+- **Forensics & Bug Repro:** Diagnosing stack traces, parsing logs, and proving bugs with failing runtime reproductions *before* writing any fix (`forensics`).
+- **Blast Radius Analysis:** Proving safety across transitive callers, schema migrations, and event streams with running code (`blast-radius`).
 - **Foundational Principles:** Grounding in immutability, boundary validation (Zod/serde), root-cause fixes, and testing observable behavior.
 - **Four-Part Verification Harness (`.verify/`):** 4-H2 feature contracts with four-part step records (`Request:`, `Why:`, `Expected:`, `Impact:`), allowlisted commands (`verify.toml`), phased runners (`run.sh`), and generic coverage checks (`checks/feature_coverage.sh`).
 - **Code Hygiene (`no-comments`, `unslop`):** Zero AI narration comments, zero commented-out code corpses, and concise, idiomatic code and prose.
+- **High-Quality Technical Writing:** Clear, layered technical documentation following the Diátaxis framework, Google developer style, and Simplified Technical English (`technical-writing`).
 
 ---
 
