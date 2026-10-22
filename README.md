@@ -1,40 +1,38 @@
-# agent-registry
+# Central Autonomic Registry (`agent-registry`)
 
-Central Autonomic Registry — skill packages, workflows, utilities, and future organ kinds.
+The central registry repository for the Autonomic AI agent stack — distributing curated skill packages, workflows, and developer utilities.
 
-`agent-brain` syncs this repo into `~/.agent_brain/registry-cache/` and falls back to the embedded snapshot when offline.
+## Standardized Layout
 
-## Layout
-
+```text
+agent-registry/
+├── registry.json                    # Canonical registry index
+├── README.md                        # Documentation & CLI reference
+├── packages/                        # Standardized curated packages
+│   ├── coding-policy/               # Strict engineering policy, feature-map, and verification
+│   ├── autonomic-core/              # Registry discovery & rmcp MCP gateway patterns
+│   ├── product-layer/               # Constitution → feature spec lane
+│   └── supervisor/                  # Execution supervisor & token-efficient ops
+├── workflows/                       # Spine DAG workflows
+│   ├── release-notes.yaml
+│   ├── stacked-pr.yaml
+│   ├── bugfix.yaml
+│   └── mcp-health-check.yaml
+└── utilities/                       # CLI utility catalog
+    └── utilities.json
 ```
-manifest.json
-packages.json
-utilities.json
-workflows.json
-workflows/*.yaml
-autonomic-core/
-supervisor/
-```
 
-## Sync
+## Client Synchronization (`agent-brain`)
+
+`agent-brain` clones and pulls this repository dynamically into `~/.autonomic/memory/registry-cache/repo/`:
 
 ```bash
 agent-brain registry sync
 ```
 
-Configure in `~/.agent_brain/config.yaml`:
-
-```yaml
-registry:
-  enabled: true
-  remote_repo: autonomic-ai-dev/agent-registry
-  remote_ref: main
-  registry_subpath: ""
-```
-
-## Spine
+Install packages directly from the synced registry:
 
 ```bash
-agent-brain registry sync --local
-agent-spine init --with @release-notes
+agent-brain package add @coding-policy
+agent-brain package add @autonomic-core
 ```

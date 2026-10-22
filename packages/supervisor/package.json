@@ -1,0 +1,16 @@
+{
+  "name": "supervisor",
+  "version": "1.0.0",
+  "description": "Execution supervisor — token-efficient ops, must_apply discipline, anti-pattern memory",
+  "kind": "bundle",
+  "entrypoints": {
+    "skills": [
+      ".cursor/skills/execution-supervisor/SKILL.md",
+      ".cursor/skills/token-efficient-ops/SKILL.md"
+    ],
+    "rules": [
+      ".cursor/rules/execution-supervisor.mdc"
+    ]
+  },
+  "default": true
+}

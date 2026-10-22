@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "default_bootstrap": [
+    "@autonomic-core",
+    "@supervisor",
+    "@coding-policy"
+  ],
+  "packages": {
+    "coding-policy": {
+      "path": "packages/coding-policy",
+      "description": "Unified engineering & verification bundle — clean code policy, feature maps (.verify/features/), unit tests, and Hurl API verification",
+      "default": true,
+      "recommend_boost": 0.35
+    },
+    "autonomic-core": {
+      "path": "packages/autonomic-core",
+      "description": "Registry discovery — find-skills and rmcp MCP gateway patterns",
+      "default": true
+    },
+    "supervisor": {
+      "path": "packages/supervisor",
+      "description": "Execution supervisor — token-efficient ops, must_apply discipline, anti-pattern memory",
+      "default": true
+    },
+    "product-layer": {
+      "path": "packages/product-layer",
+      "description": "Constitution → feature spec lane — product-feature-spec skill + cursor rule"
+    },
+    "matt-skills": {
+      "git_url": "https://github.com/mattpocock/skills.git",
+      "git_ref": "main",
+      "description": "Matt Pocock skills for real engineers — design, TDD, specs, review, triage",
+      "default": true,
+      "recommend_boost": 0.35
+    },
+    "starter": {
+      "description": "Lightweight onboarding — Matt Pocock skills + Vercel React patterns",
+      "packages": [
+        "matt-skills",
+        "nextjs"
+      ]
+    },
+    "nextjs": {
+      "git_url": "https://github.com/vercel-labs/agent-skills.git",
+      "git_ref": "main",
+      "description": "Vercel React, Next.js, and React Native agent skills"
+    },
+    "claude-skills": {
+      "git_url": "https://github.com/jeffallan/claude-skills.git",
+      "git_ref": "main",
+      "description": "Jeff Allan curated Claude skills library"
+    },
+    "ecc": {
+      "git_url": "https://github.com/affaan-m/everything-claude-code.git",
+      "git_ref": "main",
+      "description": "Everything Claude Code — large curated skill library"
+    },
+    "rust": {
+      "git_url": "https://github.com/affaan-m/everything-claude-code.git",
+      "git_ref": "main",
+      "description": "Rust patterns, testing, and review (via ECC)"
+    },
+    "official": {
+      "description": "Official skill repos — awesome-copilot, anthropics/skills, azure-skills",
+      "packages": [
+        "github/awesome-copilot",
+        "anthropics/skills",
+        "microsoft/azure-skills"
+      ]
+    }
+  },
+  "workflows": {
+    "@release-notes": "workflows/release-notes.yaml",
+    "@stacked-pr": "workflows/stacked-pr.yaml",
+    "@bugfix": "workflows/bugfix.yaml",
+    "@mcp-health-check": "workflows/mcp-health-check.yaml"
+  }
+}
