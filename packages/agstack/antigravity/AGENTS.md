@@ -96,22 +96,39 @@ Security and prompt injection defense are non-negotiable engineering requirement
 
 ## 9. Verification & Harness Standards (`.verify/`)
 In repositories with `.verify/` (or when creating verification):
-1. **Strict 4-H2 Feature Contract:** Every `.verify/features/<feature>.md` enforces exactly four sections in order:
+1. **Strict Verification Root Separation:**
+   - **Runtime Output Root (`.verify/`):** ALL project-generated verification runs, temporary test harnesses, generated suite snapshots, reports, coverage data, and logs MUST output strictly under `.verify/` (e.g. `.verify/artifacts/`, `.verify/output/`, `.verify/results/`).
+   - **Static Fixture Immutability (`verify/`):** Input reference fixtures, golden files, and baseline contracts located in `verify/` (or test input folders) are STRICTLY READ-ONLY. Never write, mutate, or output run artifacts into `verify/`.
+   - Any runtime artifact placed outside `.verify/` is an immediate test failure and must be cleaned up before turn completion.
+2. **Default Post-Dev Verification via agstack:**
+   - Verification is the mandatory default completion condition. Any code modification or bug fix is strictly INCOMPLETE until verified through the `agstack` `verification` skill (`.verify/run.sh` / allowlist).
+   - **Zero Permission Asking:** Never ask the user *"Would you like me to run tests?"* or end a turn after modifying code without executing verification. Automatically run verification and record the evidence.
+3. **Session Anchoring Declaration:**
+   - Before executing verification suites or authoring test harnesses, explicitly declare:
+     ```markdown
+     > **Session Anchor:**
+     > - **Target Output Root**: `.verify/` (fixtures in `verify/` remain strictly read-only)
+     > - **SDLC Orchestrator**: `agstack` (`skills/verification/SKILL.md` / `playbooks/<name>.md`)
+     ```
+4. **The TodoList Contract (Skill & Playbook Hydration):**
+   - When `route_task` returns `matched_skills` or recommends a playbook, you MUST call `read_file` on the matched playbook/skill path and copy its numbered checklist steps verbatim into your active task plan before calling any code-editing or execution tools.
+   - Operating without opening and copying the matched playbook into your plan is a protocol breach.
+5. **Strict 4-H2 Feature Contract:** Every `.verify/features/<feature>.md` enforces exactly four sections in order:
    - `## Sub-features`: Atomic kebab-case identifiers with intent, behavior, and outcome.
    - `## How to get to it (user POV)`: Literal CLI, HTTP, or message entrypoints.
    - `## Verification Suites (Targeted Test Commands)`: Unit command, functional command, allowlisted command, and numbered four-part steps.
    - `## Gotchas`: Operational traps, debounce timings, known coverage gaps, and unconfirmed expectations.
-2. **Four-Part Step Records:** Each verification step states:
+6. **Four-Part Step Records:** Each verification step states:
    - `Request:` method, path, and payload file.
    - `Why:` the behavior proved.
    - `Expected:` status code and concrete assertions with values.
    - `Impact:` final system state changes.
-3. **1:1 Step Coverage:** Every request entry in functional Hurl files is covered by exactly one step (`(entries …)`). Static check `checks/feature_coverage.sh` fails on unmapped or duplicate entries.
-4. **Sourced Expectations:** Values derived from reference data or calendar dates come from a recorded live query noted in the contract. Values derived from code name the class/method. Unconfirmed values are marked `[UNCONFIRMED]`.
-5. **Zero Placeholders:** Commands contain no angle-bracket placeholders (`<token>`, `<id>`). Use shell variables (`$PORT`, `{{job_id}}`) or literal values.
-6. **Allowlisted Verification:** Run verification through allowlisted entrypoints (`.verify/run.sh <feature>`) defined in `.verify/verify.toml`.
-7. **Zero Test Weakening:** Never delete, skip, or loosen an assertion to make a suite pass. Fix the application code or record the failure under `Gotchas`.
-8. **Proof Survival:** Teardown removes temporary containers and scratch state, but NEVER deletes `.verify/artifacts/`. Test logs, reports, and evidence must survive teardown.
+7. **1:1 Step Coverage:** Every request entry in functional Hurl files is covered by exactly one step (`(entries …)`). Static check `checks/feature_coverage.sh` fails on unmapped or duplicate entries.
+8. **Sourced Expectations:** Values derived from reference data or calendar dates come from a recorded live query noted in the contract. Values derived from code name the class/method. Unconfirmed values are marked `[UNCONFIRMED]`.
+9. **Zero Placeholders:** Commands contain no angle-bracket placeholders (`<token>`, `<id>`). Use shell variables (`$PORT`, `{{job_id}}`) or literal values.
+10. **Allowlisted Verification:** Run verification through allowlisted entrypoints (`.verify/run.sh <feature>`) defined in `.verify/verify.toml`.
+11. **Zero Test Weakening:** Never delete, skip, or loosen an assertion to make a suite pass. Fix the application code or record the failure under `Gotchas`.
+12. **Proof Survival:** Teardown removes temporary containers and scratch state, but NEVER deletes `.verify/artifacts/`. Test logs, reports, and evidence must survive teardown.
 
 ---
 

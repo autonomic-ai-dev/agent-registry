@@ -11,15 +11,17 @@ fi
 hook="$hooks_dir/pre-commit"
 if [[ -e "$hook" ]]; then
   echo "Existing pre-commit hook found: $hook" >&2
-  echo "Not overwriting it. Merge this check into your existing hook manually:" >&2
+  echo "Not overwriting it. Merge these checks into your existing hook manually:" >&2
   echo '  "<path-to-bundle>/scripts/check-added-comments.sh" --staged' >&2
+  echo '  "<path-to-bundle>/scripts/check-verify-separation.sh" --staged' >&2
   exit 1
 fi
 cat > "$hook" <<HOOK
 #!/usr/bin/env bash
 set -euo pipefail
 "$script_dir/check-added-comments.sh" --staged
+"$script_dir/check-verify-separation.sh" --staged
 HOOK
 chmod +x "$hook"
-echo "Installed comment guard: $hook"
-echo "This blocks commits with detected newly added comments; it does not prevent editing or bypasses such as --no-verify."
+echo "Installed agstack pre-commit guard: $hook"
+echo "This blocks commits with detected comment slop or verification output placed outside .verify/."
