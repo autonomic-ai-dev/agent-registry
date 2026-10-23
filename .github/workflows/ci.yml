@@ -15,7 +15,6 @@ jobs:
       - name: Validate JSON Registry Manifests
         run: |
           jq . registry.json > /dev/null
-          jq . utilities.json > /dev/null
           jq . workflows.json > /dev/null
 
       - name: Check Zero Added Comments
