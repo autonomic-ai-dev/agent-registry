@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON Registry Manifests
+        run: |
+          jq . registry.json > /dev/null
+          jq . workflows.json > /dev/null
+
+      - name: Check Zero Added Comments
+        run: |
+          bash packages/agstack/scripts/check-added-comments.sh
+
+      - name: Check Verification Separation
+        run: |
+          bash packages/agstack/scripts/check-verify-separation.sh
