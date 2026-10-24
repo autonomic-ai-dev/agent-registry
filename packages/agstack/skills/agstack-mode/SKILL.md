@@ -90,6 +90,31 @@ Name each principle that shaped a decision, and the decision it changed.
 | **Meta** | Authoring or changing a `SKILL.md` | [`playbooks/authoring-a-skill.md`](playbooks/authoring-a-skill.md) |
 | **Maintenance** | Pruning worktrees, containers, sockets, disk bloat | [`playbooks/worktree-cleanup.md`](playbooks/worktree-cleanup.md) |
 
+## Skills by need
+
+Load the skill when its trigger applies. A playbook names the skills it uses; these cover what no playbook does.
+
+| Need | Skill |
+|---|---|
+| The context is large, reads are big, or the session is long | `skills/context-hygiene` |
+| A decision may already have been made | `skills/decision-memory` |
+| The same attempt has failed twice | `skills/loop-breaker` |
+| A claim about code, tests, or behaviour is about to be stated | `skills/claim-evidence` |
+| The task is growing beyond the request | `skills/scope-guard` |
+| A tool call is failing, or a native tool is about to replace a routed one | `skills/tool-selection` |
+| The request is ambiguous, or a question is needed | `skills/intent-clarification` |
+| A multi-step task is reporting status | `skills/progress-report` |
+| Someone needs an explanation of code, a change, or a decision | `skills/explain` |
+| The session is ending or work is being handed over | `skills/handoff` |
+| A goal must become testable requirements | `skills/requirements-spec` |
+| A multi-step change needs an ordered plan with checks and rollback | `skills/planning` |
+| A release, tag, or version is being prepared | `skills/release-management` |
+| Something is broken for users or a system is failing | `skills/incident-response` |
+| A dependency is being added, updated, or has an advisory | `skills/dependency-hygiene` |
+| A feature needs logs, metrics, or traces | `skills/observability` |
+
+At the end of a task that used any of these skills, rate each one with `skills/skill-feedback`. A rating of 3 or lower needs a note that states the improvement.
+
 ## Reply format
 
 - Lead with the answer or the change. No filler.
