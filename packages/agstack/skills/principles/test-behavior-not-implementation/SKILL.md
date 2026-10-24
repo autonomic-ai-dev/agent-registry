@@ -1,6 +1,6 @@
 ---
 name: principle-test-behavior-not-implementation
-description: "Verify observable outcomes, return values, and real boundaries instead of internal private methods, mock trivia, or implementation details."
+description: "Apply when writing or reviewing tests, or when a test mocks internals or asserts on private methods."
 ---
 
 # Principle: Test Behavior, Not Implementation

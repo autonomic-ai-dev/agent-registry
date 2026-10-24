@@ -1,6 +1,6 @@
 ---
 name: principle-fix-root-causes
-description: "Resolve the fundamental defect rather than adding defensive workaround patches or symptom suppressions. Attack the premise."
+description: "Apply when a defect is reported, or when about to add a guard, retry, or null check that would hide a failure."
 ---
 
 # Principle: Fix Root Causes

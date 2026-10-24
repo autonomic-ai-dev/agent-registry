@@ -1,6 +1,6 @@
 ---
 name: principle-boundary-discipline
-description: "Parse and validate untrusted external data strictly at system boundaries; trust internal types and keep domain logic pure."
+description: "Apply when code parses external input such as requests, files, env, or subprocess output, or when internal code re-validates data that is already typed."
 ---
 
 # Principle: Boundary Discipline

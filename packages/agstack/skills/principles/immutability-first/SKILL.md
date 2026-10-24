@@ -1,6 +1,6 @@
 ---
 name: principle-immutability-first
-description: "Always return new objects and collections rather than mutating existing ones in place. Eliminates hidden side effects and race conditions."
+description: "Apply when a function receives a value and would change it, or when shared state is updated from more than one place."
 ---
 
 # Principle: Immutability First
