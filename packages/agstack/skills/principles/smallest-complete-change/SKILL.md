@@ -1,6 +1,6 @@
 ---
 name: principle-smallest-complete-change
-description: "Solve the entire problem with the smallest working diff. Rethink whether code is needed, reuse existing patterns, and minimize touchpoints without cutting validation, security, or tests."
+description: "Apply before writing new code, when a change spans more than one module, or when a helper or abstraction is about to be added."
 ---
 
 # Principle: Smallest Complete Change

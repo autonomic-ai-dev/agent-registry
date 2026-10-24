@@ -1,6 +1,6 @@
 ---
 name: principle-foundational-thinking
-description: "Design core data structures, models, and type contracts before writing control flow or business logic. Make illegal states unrepresentable."
+description: "Apply before writing control flow for a new feature, a state machine, or a function that branches on the same data in several places."
 ---
 
 # Principle: Foundational Thinking
