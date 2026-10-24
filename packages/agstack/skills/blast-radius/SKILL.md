@@ -1,7 +1,6 @@
 ---
 name: blast-radius
 description: "Analyze transitive impact of changes across callers, schemas, event streams, and downstream services. Prove safety with running code rather than assumptions."
-disable-model-invocation: true
 ---
 
 # Blast Radius: Impact Analysis

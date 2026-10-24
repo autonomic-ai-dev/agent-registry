@@ -1,7 +1,6 @@
 ---
 name: forensics
 description: "Diagnose stack traces, triage production logs, analyze runtime crashes, and build minimal reproductions. Settle defect causes with runtime proof before touching production code."
-disable-model-invocation: true
 ---
 
 # Forensics: Stack Trace Analysis & Bug Reproduction

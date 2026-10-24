@@ -1,7 +1,6 @@
 ---
 name: workflow-engine
 description: "Autonomous workflow runner for executing DAG and state-machine workflows (workflows/*.yaml) directly without requiring agent-spine. Drives agent nodes, executes verify/checkpoint gates, handles human approval gates, and maintains execution state."
-disable-model-invocation: true
 ---
 
 # Autonomous Workflow Engine: Zero-Dependency DAG Execution

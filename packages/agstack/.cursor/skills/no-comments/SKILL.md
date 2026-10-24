@@ -1,7 +1,6 @@
 ---
 name: no-comments
 description: "Enforce strict comment hygiene on newly written or modified code. Strips AI narration, inline chatter, and commented-out dead code while strictly preserving existing documentation, public API contracts, and license headers."
-disable-model-invocation: true
 ---
 
 # No Comments & Comment Hygiene

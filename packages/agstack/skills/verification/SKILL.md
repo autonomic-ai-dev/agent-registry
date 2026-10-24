@@ -1,7 +1,6 @@
 ---
 name: verification
 description: "Set up and run a repository's verification harness in .verify/: an allowlist of trusted commands, a phased runner (doctor, unit, static, functional), Hurl functional suites, and proof artifacts. Use whenever code changes need evidence that they pass, or when the harness must be created."
-disable-model-invocation: true
 ---
 
 # Verification

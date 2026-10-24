@@ -1,7 +1,6 @@
 ---
 name: principle-test-behavior-not-implementation
 description: "Verify observable outcomes, return values, and real boundaries instead of internal private methods, mock trivia, or implementation details."
-disable-model-invocation: true
 ---
 
 # Principle: Test Behavior, Not Implementation

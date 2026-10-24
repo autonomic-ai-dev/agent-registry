@@ -1,7 +1,6 @@
 ---
 name: security-audit
 description: "Comprehensive vulnerability auditing for source code, dependencies, credentials, secrets, memory safety, and OWASP Top 10 vulnerabilities."
-disable-model-invocation: true
 ---
 
 # Security Audit: Vulnerability & Hardening Standards

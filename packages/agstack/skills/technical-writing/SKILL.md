@@ -1,7 +1,6 @@
 ---
 name: technical-writing
 description: "Layered technical documentation standard (Diátaxis framework, Google developer style, Simplified Technical English). Use when writing design docs, RFCs, READMEs, API specifications, and pull request descriptions."
-disable-model-invocation: true
 ---
 
 # Technical Writing: Clear, Layered, Undebloated
