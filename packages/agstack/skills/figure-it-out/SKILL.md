@@ -1,6 +1,6 @@
 ---
 name: figure-it-out
-description: "Take an open-ended goal from problem to finished result without a stream of questions. Frames the problem, designs the workflow and its playbook, sets up the verification, runs it, loops until the measured desired state is reached, and leaves an audit report for human review. Use when the user states a goal and the path is not given, when the agent keeps asking what to do next, or when the user wants the task completed rather than discussed."
+description: "Figure it out and finish the task without a stream of questions. Use when the user says figure it out, figure out how to, keep going until it is done, complete it, do not ask me, or I do not want to answer questions; when a goal is stated with no steps; or when the agent is about to ask a series of questions about how to do a task. Frames the problem, designs the workflow and playbook, sets up verification, runs and loops until the measured result is reached, and leaves an audit report for human review."
 ---
 
 # Figure it out

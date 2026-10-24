@@ -1,6 +1,6 @@
 ---
 name: principle-never-block-on-human
-description: "Interrogate the repository, trace source code, and run empirical experiments. Never stall on questions that the codebase or a test run can answer."
+description: "Apply when about to ask the user a question that the repository, its tests, or a quick experiment could answer."
 ---
 
 # Principle: Never Block on the Human
