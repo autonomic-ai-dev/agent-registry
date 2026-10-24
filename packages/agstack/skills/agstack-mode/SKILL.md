@@ -96,6 +96,7 @@ Load the skill when its trigger applies. A playbook names the skills it uses; th
 
 | Need | Skill |
 |---|---|
+| A goal is stated without a path, or questions are about to be asked one by one | `skills/figure-it-out` |
 | The context is large, reads are big, or the session is long | `skills/context-hygiene` |
 | A decision may already have been made | `skills/decision-memory` |
 | The same attempt has failed twice | `skills/loop-breaker` |
