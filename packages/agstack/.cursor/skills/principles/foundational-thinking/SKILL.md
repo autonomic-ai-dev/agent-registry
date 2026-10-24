@@ -1,7 +1,6 @@
 ---
 name: principle-foundational-thinking
 description: "Design core data structures, models, and type contracts before writing control flow or business logic. Make illegal states unrepresentable."
-disable-model-invocation: true
 ---
 
 # Principle: Foundational Thinking

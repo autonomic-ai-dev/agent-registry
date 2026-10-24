@@ -1,7 +1,6 @@
 ---
 name: principle-boundary-discipline
 description: "Parse and validate untrusted external data strictly at system boundaries; trust internal types and keep domain logic pure."
-disable-model-invocation: true
 ---
 
 # Principle: Boundary Discipline

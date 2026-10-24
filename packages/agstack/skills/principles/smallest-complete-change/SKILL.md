@@ -1,7 +1,6 @@
 ---
 name: principle-smallest-complete-change
 description: "Solve the entire problem with the smallest working diff. Rethink whether code is needed, reuse existing patterns, and minimize touchpoints without cutting validation, security, or tests."
-disable-model-invocation: true
 ---
 
 # Principle: Smallest Complete Change

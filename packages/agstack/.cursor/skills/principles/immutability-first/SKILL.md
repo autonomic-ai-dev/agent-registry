@@ -1,7 +1,6 @@
 ---
 name: principle-immutability-first
 description: "Always return new objects and collections rather than mutating existing ones in place. Eliminates hidden side effects and race conditions."
-disable-model-invocation: true
 ---
 
 # Principle: Immutability First

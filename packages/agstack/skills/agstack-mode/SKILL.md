@@ -1,7 +1,6 @@
 ---
 name: agstack-mode
 description: "Universal engineering mode for the entire Software Development Lifecycle (SDLC). Matches tasks to structured playbooks across context & intent, design & architecture, undebloated coding, forensics & bug reproduction, test generation, verification (.verify/), code review, and technical writing."
-disable-model-invocation: true
 ---
 
 # agstack mode: Full-SDLC Engineering Operating System

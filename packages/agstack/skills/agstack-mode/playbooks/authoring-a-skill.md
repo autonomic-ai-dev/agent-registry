@@ -16,7 +16,7 @@ Before authoring skills, emit the Session Anchor and copy these 5 steps verbatim
 ```
 
 - [ ] Step 1: Define skill name, description, and unambiguous activation triggers
-- [ ] Step 2: Author YAML frontmatter (`name`, `description`, `disable-model-invocation: true`)
+- [ ] Step 2: Author YAML frontmatter (`name`, `description`)
 - [ ] Step 3: Write concise, actionable instructions and non-negotiable invariants
 - [ ] Step 4: Extract voluminous reference tables or scripts into `references/` or `scripts/`
 - [ ] Step 5: Test skill retrieval via `agent-brain skill_search` and verify with `.verify/run.sh`

@@ -1,7 +1,6 @@
 ---
 name: unslop
 description: "Eliminate AI slop, bloated boilerplate, and excessive abstractions. Enforces direct, concise, idiomatic code and crisp, evidence-based reporting without fluff or generic filler."
-disable-model-invocation: true
 ---
 
 # Unslop: Concise, Idiomatic, Product-Ready

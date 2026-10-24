@@ -1,7 +1,6 @@
 ---
 name: principle-never-block-on-human
 description: "Interrogate the repository, trace source code, and run empirical experiments. Never stall on questions that the codebase or a test run can answer."
-disable-model-invocation: true
 ---
 
 # Principle: Never Block on the Human

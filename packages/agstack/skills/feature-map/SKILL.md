@@ -1,7 +1,6 @@
 ---
 name: feature-map
 description: "Create, maintain, and verify a repository's feature map in .verify/: behaviour contracts linked to unit and functional test suites, with step-level verification, coverage checks, and an evidence record. Use for any repository that keeps a .verify/ harness, or that needs one."
-disable-model-invocation: true
 ---
 
 # Feature map

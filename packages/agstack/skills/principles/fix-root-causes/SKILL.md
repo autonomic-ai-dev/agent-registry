@@ -1,7 +1,6 @@
 ---
 name: principle-fix-root-causes
 description: "Resolve the fundamental defect rather than adding defensive workaround patches or symptom suppressions. Attack the premise."
-disable-model-invocation: true
 ---
 
 # Principle: Fix Root Causes
