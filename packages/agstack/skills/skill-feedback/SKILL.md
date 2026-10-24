@@ -27,7 +27,9 @@ sh scripts/skill-feedback.sh rate <skill> <1-5> "<note>"
 - `2`: it misled or wasted effort. The note must state what it got wrong and the change that fixes it.
 - `1`: it caused a defect or a blocked task. The note must state the failure and its evidence.
 
-A note for a rating of 3 or lower is required. A useful note names the step, the failure, and the change, in one or two sentences. "Unclear" is not a note. "Step 4 does not say which file holds the threshold, so I guessed; name the file" is.
+The script enforces the note fields. A rating of 3 or lower needs `Change:` and at least 40 characters. A rating of 1 or 2 also needs `Evidence:`. Use the labels in this order: `Context:`, `Observed:`, `Change:`, `Evidence:`.
+
+The full rules, the scale, examples of accepted and rejected notes, and what happens to a rating are in `references/feedback-guidelines.md`. Read them with `sh scripts/skill-feedback.sh guidelines` before the first rating of a session.
 
 The script rejects an unknown skill name, so use the folder name under `skills/`. It replaces a pipe character in a note with a slash, so the log stays one entry per line.
 

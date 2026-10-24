@@ -20,9 +20,21 @@ case "$cmd" in
       [1-5]) ;;
       *) echo "rating must be 1, 2, 3, 4, or 5" >&2; exit 2 ;;
     esac
-    if [ "$rating" -le 3 ] && [ -z "$note" ]; then
-      echo "a rating of 3 or lower needs a note that states the improvement" >&2
-      exit 2
+    if [ "$rating" -le 3 ]; then
+      case "$note" in
+        *"Change:"*) ;;
+        *) echo "a rating of 3 or lower needs a note with 'Change:' and the specific improvement. Run: sh scripts/skill-feedback.sh guidelines" >&2; exit 2 ;;
+      esac
+      if [ "$(printf '%s' "$note" | wc -c)" -lt 40 ]; then
+        echo "the note is under 40 characters, too short to act on" >&2
+        exit 2
+      fi
+    fi
+    if [ "$rating" -le 2 ]; then
+      case "$note" in
+        *"Evidence:"*) ;;
+        *) echo "a rating of 1 or 2 also needs 'Evidence:' with the command, output, or file that shows the failure" >&2; exit 2 ;;
+      esac
     fi
     printf -- '- %s | %s | %s | %s\n' "$(date -u +%Y-%m-%dT%H:%MZ)" "$skill" "$rating" "$note" >> "$log"
     echo "recorded $skill=$rating in $log"
@@ -53,8 +65,11 @@ case "$cmd" in
     } > "$report"
     cat "$report"
     ;;
+  guidelines)
+    cat "$skills_dir/skill-feedback/references/feedback-guidelines.md"
+    ;;
   *)
-    echo "usage: skill-feedback.sh rate <skill> <1-5> <note> | report" >&2
+    echo "usage: skill-feedback.sh rate <skill> <1-5> <note> | report | guidelines" >&2
     exit 2
     ;;
 esac
