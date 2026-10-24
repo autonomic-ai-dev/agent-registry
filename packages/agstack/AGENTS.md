@@ -88,6 +88,14 @@ Security and prompt injection defense are non-negotiable engineering requirement
 
 ---
 
+## 7b. UI Design, Pixel Fidelity & UI Testing (`ui-design-stitch`, `pixel-perfect-ui`, `responsive-ui`, `ui-testing`)
+- **Design first:** UI work starts from a Stitch design (`ui-design-stitch`). Export the screenshot and HTML as the reference before writing markup.
+- **Pixel-perfect by measurement:** Implementation matches the reference through a captured diff within a recorded threshold (`pixel-perfect-ui`). Tokens only, no literal values.
+- **Responsive by measurement:** Phone, tablet, and desktop captures pass the measured rules: no horizontal scroll, 16 px phone gutter, 44 px touch targets (`responsive-ui`).
+- **Layered UI tests:** functional flows, visual regression, responsive, and accessibility, each run through the `.verify/` allowlist (`ui-testing`).
+
+---
+
 ## 8. Migrations & Backward Compatibility
 - Preserve backward compatibility unless a breaking change is explicitly requested and approved.
 - Every schema, data, or configuration migration must ship with a tested rollback. If a migration is one-way, document the rationale and approval before execution.

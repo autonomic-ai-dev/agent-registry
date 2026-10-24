@@ -46,6 +46,7 @@ Match user prompt intent to its dedicated playbook:
 | **DevOps** | Background daemons (`launchd`, `systemd`), Unix domain socket IPC, signal traps | [`playbooks/infrastructure-orchestration.md`](playbooks/infrastructure-orchestration.md) |
 | **Security** | Threat modeling, delimiter isolation, SQL/AST injection defense, secrets audits | [`playbooks/security-and-jailbreak-defense.md`](playbooks/security-and-jailbreak-defense.md) |
 | **Testing** | Authoring targeted unit tests + functional Hurl API suites (1:1 step coverage) | [`playbooks/test-suite-generation.md`](playbooks/test-suite-generation.md) |
+| **UI** | Stitch design to pixel-perfect, responsive, tested UI | [`playbooks/ui-delivery.md`](playbooks/ui-delivery.md) |
 | **Review** | Adversarial review (concurrency, memory leaks, error propagation, blast radius) | [`playbooks/code-review.md`](playbooks/code-review.md) |
 | **Evaluation** | Evaluating agent skills, prompts, or routing heuristics against golden datasets | [`playbooks/eval.md`](playbooks/eval.md) |
 | **Docs** | Diátaxis API documentation, architecture specs, operational runbooks | [`playbooks/technical-writing.md`](playbooks/technical-writing.md) |

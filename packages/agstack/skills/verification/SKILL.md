@@ -37,6 +37,7 @@ These rules apply whenever you run or change verification:
 4. **Run through the allowlist.** Run verification through `.verify/run.sh`, or another entry point listed in `.verify/verify.toml`. A command outside the allowlist is not evidence.
 5. **Check the environment before testing.** When `doctor.sh` fails, stop and fix the environment. Do not drive tests against a broken setup.
 6. **Stop only what you started.** End background processes by the process IDs the run recorded. Do not kill processes by name or by pattern.
+7. **UI changes need UI evidence:** a change that alters a user interface must pass pixel comparison, responsive checks, and layered UI tests (`pixel-perfect-ui`, `responsive-ui`, `ui-testing`) before it is complete. See `playbooks/ui-delivery.md`.
 7. **Keep the artifacts.** Logs, reports, and responses under `.verify/artifacts/` survive teardown. Cleanup never deletes them. Pre-commit hooks verify artifact presence.
 8. **Fix failures, never weaken them.** Do not comment out a failing test, loosen an assertion, or remove a command from the allowlist to make a run pass. Fix the cause, or record it as a known failure with its evidence.
 9. **Report what ran.** State the commands run, their results, and anything that did not run, and why (Evidence Record).
