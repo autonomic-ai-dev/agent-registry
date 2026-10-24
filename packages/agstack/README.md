@@ -70,7 +70,6 @@ agstack/
 │       ├── fix-root-causes/
 │       └── never-block-on-human/
 │
-├── .cursor/                             # Cursor-native mirrors
 └── scripts/
     ├── check-added-comments.sh          # Git pre-commit comment linter
     ├── install-git-hook.sh              # Hook installer
@@ -88,7 +87,7 @@ agent-brain package add @agstack
 ```
 
 ### In Cursor
-Pick `agstack-mode` or run with the `.cursor/rules/agstack.mdc` active by default.
+Pick `agstack-mode`, or activate `platforms/cursor/rules/agstack.mdc` as the Cursor rule. Skills are read from `skills/`, with no separate Cursor copy.
 
 ### In Claude Code
 `platforms/claude/CLAUDE.md` is automatically installed by `agent-brain install --host claude` or by copying to `CLAUDE.md`.
