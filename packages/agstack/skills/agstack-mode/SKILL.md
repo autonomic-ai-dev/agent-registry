@@ -19,7 +19,7 @@ Do these steps in order. Do not skip one because the task looks small.
 4. **Pick the playbook.** Match the intent in the Routing table below, then read that playbook in full and copy its numbered steps into your plan. No match: use `investigation`, and say why.
 5. **Load the principles the task triggers.** Each principle's `SKILL.md` lists when it applies. Read only those you need. Cite only principles you read this session.
 6. **Execute the playbook.** For any code edit, the smallest complete change comes first. Before writing new code, check in this order: does it need to exist, does the repo already have it, does the standard library or an installed dependency cover it, and is a one-line answer enough.
-7. **Verify.** Any code change is incomplete until `skills/verification` passes through the `.verify/` allowlist, with artifacts under `.verify/artifacts/`. Any UI change also needs `skills/pixel-perfect-ui`, `skills/responsive-ui`, and `skills/ui-testing`. Never ask "should I run tests?".
+7. **Verify.** Any code change is incomplete until `skills/verification` passes through the `.verify/` allowlist, with artifacts under `.verify/artifacts/`. Any UI change also needs `skills/pixel-perfect-ui`, `skills/responsive-ui`, and `skills/ui-testing`. A UI built from a Stitch or HTML design also runs the `skills/design-to-code` loop until every screen meets the match threshold (98% by default). Never ask "should I run tests?".
 8. **Report.** Use the reply format below.
 
 Before any verification suite or test harness, output the session anchor:
@@ -76,6 +76,7 @@ Name each principle that shaped a decision, and the decision it changed.
 | **DevOps** | Daemons (`launchd`, `systemd`), sockets, signal handling | [`playbooks/infrastructure-orchestration.md`](playbooks/infrastructure-orchestration.md) |
 | **Security** | Threat model, injection, secrets, AST validation, jailbreaks | [`playbooks/security-and-jailbreak-defense.md`](playbooks/security-and-jailbreak-defense.md) |
 | **UI** | A user interface built from a design | [`playbooks/ui-delivery.md`](playbooks/ui-delivery.md) |
+| **UI** | Converting a Stitch screen or HTML design into code, scored against the design until it matches (98% by default) | [`playbooks/design-to-code.md`](playbooks/design-to-code.md) |
 | **Testing** | Targeted unit tests and functional API suites | [`playbooks/test-suite-generation.md`](playbooks/test-suite-generation.md) |
 | **Review** | Adversarial review: concurrency, leaks, error propagation | [`playbooks/code-review.md`](playbooks/code-review.md) |
 | **Evaluation** | Agent skills, prompts, or routing against golden data | [`playbooks/eval.md`](playbooks/eval.md) |
@@ -88,6 +89,32 @@ Name each principle that shaped a decision, and the decision it changed.
 | **Architecture** | Multi-phase programs and stacked PR initiatives | [`playbooks/multi-phase-plan.md`](playbooks/multi-phase-plan.md) |
 | **Meta** | Authoring or changing a `SKILL.md` | [`playbooks/authoring-a-skill.md`](playbooks/authoring-a-skill.md) |
 | **Maintenance** | Pruning worktrees, containers, sockets, disk bloat | [`playbooks/worktree-cleanup.md`](playbooks/worktree-cleanup.md) |
+
+## Skills by need
+
+Load the skill when its trigger applies. A playbook names the skills it uses; these cover what no playbook does.
+
+| Need | Skill |
+|---|---|
+| A goal is stated without a path, or questions are about to be asked one by one | `skills/figure-it-out` |
+| The context is large, reads are big, or the session is long | `skills/context-hygiene` |
+| A decision may already have been made | `skills/decision-memory` |
+| The same attempt has failed twice | `skills/loop-breaker` |
+| A claim about code, tests, or behaviour is about to be stated | `skills/claim-evidence` |
+| The task is growing beyond the request | `skills/scope-guard` |
+| A tool call is failing, or a native tool is about to replace a routed one | `skills/tool-selection` |
+| The request is ambiguous, or a question is needed | `skills/intent-clarification` |
+| A multi-step task is reporting status | `skills/progress-report` |
+| Someone needs an explanation of code, a change, or a decision | `skills/explain` |
+| The session is ending or work is being handed over | `skills/handoff` |
+| A goal must become testable requirements | `skills/requirements-spec` |
+| A multi-step change needs an ordered plan with checks and rollback | `skills/planning` |
+| A release, tag, or version is being prepared | `skills/release-management` |
+| Something is broken for users or a system is failing | `skills/incident-response` |
+| A dependency is being added, updated, or has an advisory | `skills/dependency-hygiene` |
+| A feature needs logs, metrics, or traces | `skills/observability` |
+
+At the end of a task that used any of these skills, rate each one with `skills/skill-feedback`. A rating of 3 or lower needs a note that states the improvement.
 
 ## Reply format
 

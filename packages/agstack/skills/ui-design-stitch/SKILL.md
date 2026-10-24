@@ -29,7 +29,7 @@ All reached through `route_to_mcp` with server `stitch`:
 2. **Set the design system first.** Tokens (palette, type, radius, light and dark backgrounds) apply to every screen, so set them before generating screens. Keep the same tokens in the repository's theme file.
 3. **Generate the screen.** Call `generate_screen_from_text` with a prompt that names the screen, its states, and the breakpoints it must hold at. Generation can take minutes. Do not retry on timeout. Poll `get_screen` every 30 seconds, up to ten times.
 4. **Iterate, do not regenerate.** Use `edit_screens` for a change to an existing screen. Use `generate_variants` to explore alternatives. Keep the chosen screen's id.
-5. **Export the reference.** `download_file` for the screenshot and the HTML. Save both under `.verify/artifacts/design/<screen>/`. The screenshot is the pixel reference. The HTML is the structural reference.
+5. **Export the reference.** `get_screen` gives the screen's `width`, `height`, and the HTML's resource name. `download_file` returns the HTML as text. Save it as `.verify/artifacts/design/<screen>/design.html`. Render the pixel reference from that HTML at the screen's size with `design-to-code`'s `scripts/render.sh`. Do not save the screenshot from `download_file`, because it returns base64 inside the response. The converted build is then scored against that reference in `design-to-code`.
 6. **Record the link.** Write the Stitch project id, screen id, and design-system version into the feature map's `## Code` or knowledge base entry for the screen, so a later change can find its design.
 
 ## Rules
