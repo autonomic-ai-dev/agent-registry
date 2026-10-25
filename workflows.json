@@ -23,7 +23,7 @@
       "fallback": "bash scripts/run-workflow.sh run workflows/bugfix.yaml"
     },
     "mcp-health-check": {
-      "description": "agent-body schema audit → gateway probe → route_task MCP routing verify",
+      "description": "agent-brain doctor, skill_search probe, and route_task routing verify",
       "path": "workflows/mcp-health-check.yaml",
       "organ": "agent-spine",
       "invoke": "agent-spine init --with @mcp-health-check",

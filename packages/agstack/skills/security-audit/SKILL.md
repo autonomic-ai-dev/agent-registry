@@ -23,7 +23,7 @@ Security is not a post-release afterthought; it is an active engineering constra
 - **Command & Code Injection:**
   - Avoid raw shell execution (`sh -c`, `system()`, `eval()`).
   - When spawning subprocesses, pass arguments as discrete array elements (e.g., `execFile`, `Command::new("bin").args([...])`).
-  - Pass commands through AST validators (e.g., `agent-mouth` / `mouth_validate_ast`) before execution.
+  - Pass commands through an AST validator before execution.
 - **Path Traversal:**
   - Sanitize all file paths from user inputs.
   - Canonicalize paths using `filepath.Clean`, `path.resolve`, or `std::fs::canonicalize` and verify that the target path resides strictly within the intended base directory. Reject paths containing `..`.

@@ -15,7 +15,7 @@ agent-registry/
 │   ├── feature.yaml                 # @feature — Intent -> model domain -> 4-H2 contract -> implement -> Hurl suites -> gate
 │   ├── stacked-pr.yaml              # @stacked-pr — Atomic chunking -> verification -> rich PR description -> approval
 │   ├── release-notes.yaml           # @release-notes — Diff collection -> Diátaxis notes -> review -> publish
-│   └── mcp-health-check.yaml        # @mcp-health-check — Schema audit -> gateway probe -> routing verify
+│   └── mcp-health-check.yaml        # @mcp-health-check — doctor check -> skill search probe -> routing verify
 ├── scripts/                         # Zero-dependency utilities
 │   └── run-workflow.sh              # Standalone DAG workflow engine (zero-Spine execution)
 └── utilities/                       # CLI utility catalog

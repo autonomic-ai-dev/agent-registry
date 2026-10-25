@@ -81,7 +81,7 @@ alwaysApply: true
 Security and prompt injection defense are non-negotiable engineering requirements:
 - **Zero Secrets in Code:** Never commit credentials, API keys, or private tokens. All secrets must be validated at service startup with strict fail-fast schemas.
 - **Strict Delimiter Isolation:** Never interpolate untrusted user input or external data directly into instructions. Wrap in strict delimiters (e.g. `<untrusted_user_input>`), sanitize delimiter collision sequences, and anchor system prompts with immutable precedence rules.
-- **Least Privilege & Excessive Agency Prevention:** Tool execution must be tightly scoped and parameterized. High-impact operations (destructive mutations, schema drops, privilege changes) require explicit approval gates (`mouth_request_approval`).
+- **Least Privilege & Excessive Agency Prevention:** Tool execution must be tightly scoped and parameterized. High-impact operations (destructive mutations, schema drops, privilege changes) require explicit approval gates.
 - **OWASP Top 10 Defenses:** Mandatory parameterized queries for SQL, AST/vector validation for shell commands, strict path canonicalization against traversal (`..`), and whitelist validation against SSRF.
 - **Dependency & Supply Chain Audits:** Lockfiles must be maintained and verified via automated audits (`cargo audit`, `npm audit`, `pip-audit`, `govulncheck`).
 - **Automated Security Tests:** Every feature touching untrusted input must include adversarial test cases in `.verify/` verifying resistance against injection, jailbreaks, and unauthorized tool invocation.
