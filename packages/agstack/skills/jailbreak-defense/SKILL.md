@@ -45,8 +45,8 @@ Autonomous agents and LLM-powered applications are vulnerable to adversarial man
 ### C. Principle of Least Privilege & Tool Guardrails
 - **Tool Scoping:** Restrict agent tool access strictly to the operations required for the specific task.
 - **Schema Validation:** Enforce strict type checking on all tool arguments using Zod, Pydantic, or Serde. Disallow arbitrary free-form shell string execution wherever parameterized APIs are possible.
-- **Approval Gates:** High-impact operations (file deletion, database drops, external network calls, secret reads, privilege escalation) **must** halt for explicit approval (e.g. `agent-mouth` / `mouth_request_approval`).
-- **Read-Only / Isolation:** Untrusted code execution must run within isolated sandboxes (`agent-immune` / `immune_sandbox_run` or containerized environments).
+- **Approval Gates:** High-impact operations (file deletion, database drops, external network calls, secret reads, privilege escalation) **must** halt for explicit approval (e.g. the host approval prompt).
+- **Read-Only / Isolation:** Untrusted code execution must run within isolated sandboxes (a container).
 
 ### D. System Prompt Anchoring & Exfiltration Defense
 - Place core behavioral constraints at both the start and end of the context (sandwich defense) to counteract context decay.

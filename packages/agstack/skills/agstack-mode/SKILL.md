@@ -1,6 +1,6 @@
 ---
 name: agstack-mode
-description: "agstack's engineering mode, applied on every invocation: token-efficient, minimal-blast-radius engineering with a fixed core path, routing to a playbook, principles, and verification evidence before completion. Use whenever the user says agstack, /agstack, or asks for any coding, design, review, debugging, UI, or documentation work."
+description: "agstack's engineering mode, applied on every invocation: token-efficient, minimal-blast-radius engineering with a fixed core path, routing to a playbook (including UI design, SDLC, gstack executive reviews, and minimalist entrepreneurship), principles, and verification evidence before completion. Use whenever the user says agstack, /agstack, or asks for any coding, design, review, debugging, UI, or documentation work."
 ---
 
 # agstack mode
@@ -50,25 +50,27 @@ Name each principle that shaped a decision, and the decision it changed.
 2. **No Comments** (`skills/no-comments`): always on. No new comments unless requested.
 3. **Smallest Complete Change** (`skills/principles/smallest-complete-change`): the shortest working diff that handles edge cases.
 4. **Foundational Thinking** (`skills/principles/foundational-thinking`): types and state machines before control flow.
-5. **Boundary Discipline** (`skills/principles/boundary-discipline`): validate untrusted data at the edge; trust internal types.
-6. **Immutability First** (`skills/principles/immutability-first`): return new values rather than mutating.
-7. **Test Behavior, Not Implementation** (`skills/principles/test-behavior-not-implementation`): assert observable outcomes; mock only real external boundaries.
-8. **Fix Root Causes** (`skills/principles/fix-root-causes`): attack the premise, do not patch symptoms.
-9. **Never Block on the Human** (`skills/principles/never-block-on-human`): read the code or run an experiment before asking.
+5. **Boundary Discipline** (`skills/principles/boundary-discipline`): validate input and output schemas at every integration boundary.
+6. **Immutability First** (`skills/principles/immutability-first`): return new instances rather than mutating in place.
+7. **Never Block on the Human** (`skills/principles/never-block-on-human`): test empirically before asking questions the system can answer.
+8. **Fix Root Causes** (`skills/principles/fix-root-causes`): eliminate the condition that produced the bug, not just the symptom.
+9. **Test Behavior Not Implementation** (`skills/principles/test-behavior-not-implementation`): assert what code does, not how it does it.
 
-## Routing
+## Playbooks
 
-| Category | Intent and trigger | Playbook |
+Match the user's intent to one playbook. Read it in full before touching code.
+
+| Intent | Scope | Playbook |
 |---|---|---|
-| **Discovery** | How something works, data flow, architecture questions | [`playbooks/investigation.md`](playbooks/investigation.md) |
-| **Discovery** | Design docs, ADRs, PR history, extracting intent | [`playbooks/context-and-intent.md`](playbooks/context-and-intent.md) |
-| **Design** | Schemas, concurrency boundaries, interfaces | [`playbooks/design-and-architecture.md`](playbooks/design-and-architecture.md) |
-| **Design** | A fork (architecture, performance, concurrency) settled by experiment | [`playbooks/prototype.md`](playbooks/prototype.md) |
-| **Backend** | New APIs, models, CLI tools, daemons, capabilities | [`playbooks/feature.md`](playbooks/feature.md) |
-| **Backend** | Cleanup, debloating, behaviour-preserving migration | [`playbooks/refactoring.md`](playbooks/refactoring.md) |
-| **Defect** | Bugs, crashes, panics, unexpected behaviour, failing tests | [`playbooks/bug-fix.md`](playbooks/bug-fix.md) |
-| **Diagnostics** | Memory leak, OOM, CPU spin, deadlock, FD exhaustion | [`playbooks/runtime-forensics.md`](playbooks/runtime-forensics.md) |
-| **Diagnostics** | Analysing pprof, flamegraphs, heap snapshots, traces | [`playbooks/trace-forensics.md`](playbooks/trace-forensics.md) |
+| **Autonomous run** | Hands-off end-to-end task execution across multiple files | [`playbooks/autonomous-run.md`](playbooks/autonomous-run.md) |
+| **Context & intent** | Parsing ambiguous prompts, user intent, or large codebases | [`playbooks/context-and-intent.md`](playbooks/context-and-intent.md) |
+| **Design & architecture** | RFCs, ADRs, database schemas, API specs, and service layouts | [`playbooks/design-and-architecture.md`](playbooks/design-and-architecture.md) |
+| **Feature** | New functionality, API endpoints, workflow steps, models | [`playbooks/feature.md`](playbooks/feature.md) |
+| **Bug fix** | Fixing broken behavior, failing tests, or unexpected errors | [`playbooks/bug-fix.md`](playbooks/bug-fix.md) |
+| **Refactoring** | Code cleanup, dead code removal, architecture realignment | [`playbooks/refactoring.md`](playbooks/refactoring.md) |
+| **Investigation** | Unknown root causes, repro synthesis, bug isolation | [`playbooks/investigation.md`](playbooks/investigation.md) |
+| **Prototype** | Throwaway code, exploratory spikes, fast validation | [`playbooks/prototype.md`](playbooks/prototype.md) |
+| **Forensics** | Analysing pprof, flamegraphs, heap snapshots, traces | [`playbooks/trace-forensics.md`](playbooks/trace-forensics.md) |
 | **Performance** | Measured slowness, latency spike, slow query | [`playbooks/perf-issue.md`](playbooks/perf-issue.md) |
 | **Optimization** | Sustained tuning of a metric (p99, token cost, memory) | [`playbooks/hillclimb.md`](playbooks/hillclimb.md) |
 | **Database** | Schema changes, migrations, backward compatibility | [`playbooks/database-migration.md`](playbooks/database-migration.md) |
@@ -89,6 +91,8 @@ Name each principle that shaped a decision, and the decision it changed.
 | **Architecture** | Multi-phase programs and stacked PR initiatives | [`playbooks/multi-phase-plan.md`](playbooks/multi-phase-plan.md) |
 | **Meta** | Authoring or changing a `SKILL.md` | [`playbooks/authoring-a-skill.md`](playbooks/authoring-a-skill.md) |
 | **Maintenance** | Pruning worktrees, containers, sockets, disk bloat | [`playbooks/worktree-cleanup.md`](playbooks/worktree-cleanup.md) |
+| **Entrepreneurship** | Turn ideas into profitable businesses: validate ideas, identify community, build lean MVP, acquire first customers, price profitably, and grow sustainably | [`playbooks/entrepreneur.md`](playbooks/entrepreneur.md) |
+| **Executive Review** | Garry Tan's gstack executive and engineering reviews: autoplan, plan-ceo-review, plan-design-review, plan-eng-review, office-hours, qa, and ship | [`playbooks/gstack-review.md`](playbooks/gstack-review.md) |
 
 ## Skills by need
 

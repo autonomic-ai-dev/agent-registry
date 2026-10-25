@@ -46,7 +46,7 @@ Before authoring daemon configs, emit the Session Anchor and copy these 5 steps 
 
 ```markdown
 ### Infrastructure Orchestration Evidence Record
-- Service Name: [e.g. agent-body / service-daemon]
+- Service Name: [e.g. service-daemon]
 - Socket IPC Path: [e.g. ~/.autonomic/serve.sock]
 - Lifecycle Verified: [Start -> Socket Listen -> Signal Drain -> Clean Exit]
 - Test Artifact: `.verify/artifacts/daemon-test.log` (Exit Code 0)

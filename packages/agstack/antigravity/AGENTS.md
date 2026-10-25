@@ -30,6 +30,8 @@ alwaysApply: true
 - **`code-review`:** Adversarial audit across security, concurrency, error paths, and resource leaks; analyze blast radius; zero test weakening.
 - **`technical-writing`:** Author clear, layered docs (Diátaxis, Google Dev style, STE); use real code symbols; eliminate AI fluff.
 - **`prototype`:** Settle architectural forks and performance trade-offs empirically; clean disposal.
+- **`entrepreneur`:** Business idea validation, community discovery, manual processizing ("magic piece of paper"), weekend MVP scoping, first 100 customers, pricing models, sustainable growth, and company values (Sahil Lavingia Minimalist Entrepreneur framework).
+- **`gstack`:** Garry Tan executive review suite: YC office hours (product reframing), CEO review (10-star product), Design/DevEx/Eng reviews, and Autoplan pipeline.
 - **`autonomous-run`:** Milestone decomposition; continuous verification; hard gate stop on any failure; self-contained evidence record.
 
 ---
@@ -81,7 +83,7 @@ alwaysApply: true
 Security and prompt injection defense are non-negotiable engineering requirements:
 - **Zero Secrets in Code:** Never commit credentials, API keys, or private tokens. All secrets must be validated at service startup with strict fail-fast schemas.
 - **Strict Delimiter Isolation:** Never interpolate untrusted user input or external data directly into instructions. Wrap in strict delimiters (e.g. `<untrusted_user_input>`), sanitize delimiter collision sequences, and anchor system prompts with immutable precedence rules.
-- **Least Privilege & Excessive Agency Prevention:** Tool execution must be tightly scoped and parameterized. High-impact operations (destructive mutations, schema drops, privilege changes) require explicit approval gates (`mouth_request_approval`).
+- **Least Privilege & Excessive Agency Prevention:** Tool execution must be tightly scoped and parameterized. High-impact operations (destructive mutations, schema drops, privilege changes) require explicit approval gates.
 - **OWASP Top 10 Defenses:** Mandatory parameterized queries for SQL, AST/vector validation for shell commands, strict path canonicalization against traversal (`..`), and whitelist validation against SSRF.
 - **Dependency & Supply Chain Audits:** Lockfiles must be maintained and verified via automated audits (`cargo audit`, `npm audit`, `pip-audit`, `govulncheck`).
 - **Automated Security Tests:** Every feature touching untrusted input must include adversarial test cases in `.verify/` verifying resistance against injection, jailbreaks, and unauthorized tool invocation.

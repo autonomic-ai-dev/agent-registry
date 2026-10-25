@@ -34,18 +34,18 @@ agent-spine run workflows/bugfix.yaml
 agent-spine run workflows/feature.yaml --payload '{"repo_root":".","feature":"billing-invoices"}'
 ```
 
-### Method B: Spine MCP Tool Invocation (When agent-body MCP is present)
+### Method B: Spine MCP Tool Invocation (When the agent-spine MCP server is present)
 ```json
 // Submit workflow
 call_mcp_tool(
-  ServerName: "agent-body",
+  ServerName: "agent-spine",
   ToolName: "spine_submit_workflow",
   Arguments: { "workflow": "bugfix", "payload": { "feature": "billing" } }
 )
 
 // Check progress
 call_mcp_tool(
-  ServerName: "agent-body",
+  ServerName: "agent-spine",
   ToolName: "spine_check_status",
   Arguments: { "workflow_id": "<workflow-id>" }
 )

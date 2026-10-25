@@ -17,6 +17,18 @@
       "default": true,
       "recommend_boost": 0.35
     },
+    "minimalist-entrepreneur": {
+      "git_url": "https://github.com/slavingia/skills.git",
+      "git_ref": "main",
+      "description": "The Minimalist Entrepreneur skills (Sahil Lavingia) — community, validation, processize, MVP, first customers, pricing, marketing, growth, culture"
+    },
+    "gstack": {
+      "git_url": "https://github.com/garrytan/gstack.git",
+      "git_ref": "main",
+      "description": "Garry Tan gstack — YC office hours, CEO review, eng review, design review, devex review, autoplan, QA lead",
+      "default": true,
+      "recommend_boost": 0.35
+    },
     "starter": {
       "description": "Lightweight onboarding — Matt Pocock skills + Vercel React patterns",
       "packages": [

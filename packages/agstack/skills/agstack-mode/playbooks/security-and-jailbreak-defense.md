@@ -25,8 +25,8 @@ Use this playbook whenever implementing features that handle user inputs, untrus
 - **Enforce Boundary Schemas & Safe APIs:**
   - Validate all inputs and tool parameters with strict runtime schemas (Zod, Pydantic, Serde).
   - Use parameterized queries for all database interactions.
-  - Avoid raw shell invocations; use argument vectors and validate AST with `agent-mouth`.
-  - Apply the principle of least privilege: gate destructive tool calls behind approval gates (`mouth_request_approval`).
+  - Avoid raw shell invocations; use argument vectors and validate AST before execution.
+  - Apply the principle of least privilege: gate destructive tool calls behind approval gates.
 
 ### Step 3: Author Adversarial Test Suites in `.verify/`
 - Before marking code secure, write deterministic automated regression tests:
