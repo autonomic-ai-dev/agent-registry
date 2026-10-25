@@ -11,7 +11,7 @@
 AI agents without a strict process produce slop: commentary that restates obvious code, fragile workarounds, unverified claims, and hallucinated fixes. 
 
 Inspired by [pstack](https://github.com/cursor/plugins/tree/main/pstack), **`agstack`** adapts rigorous software practices into an agentic framework:
-- **Full-SDLC Playbooks (`agstack-mode`):** Dedicated step-by-step procedures covering every lifecycle phase: `context-and-intent`, `design-and-architecture`, `bug-fix`, `feature`, `refactoring`, `test-suite-generation`, `security-and-jailbreak-defense`, `code-review`, `technical-writing`, `prototype`, and `autonomous-run`.
+- **Full-SDLC Playbooks (`agstack-mode`):** Dedicated step-by-step procedures covering every lifecycle phase: `context-and-intent`, `design-and-architecture`, `bug-fix`, `feature`, `refactoring`, `test-suite-generation`, `security-and-jailbreak-defense`, `code-review`, `technical-writing`, `prototype`, `entrepreneur`, `gstack-review`, and `autonomous-run`.
 - **Interrogate Code, Never the User:** Agents discover entry points, ports, and schemas by navigating the codebase.
 - **Deep Architecture & Patterns:** Conforming strictly to the repository's existing architecture, ADRs, and caller ergonomics (`architect`).
 - **Forensics & Bug Repro:** Diagnosing stack traces, parsing logs, and proving bugs with failing runtime reproductions *before* writing any fix (`forensics`).
@@ -44,7 +44,13 @@ agstack/
 ├── skills/                              # Universal skills (Open Agent Skills Standard)
 │   ├── agstack-mode/                    # Playbook orchestrator
 │   │   ├── SKILL.md
-│   │   └── playbooks/                   # bug-fix, feature, refactoring, etc.
+│   │   └── playbooks/                   # bug-fix, feature, refactoring, entrepreneur, etc.
+│   ├── entrepreneur/                    # Minimalist entrepreneur journey (Sahil Lavingia)
+│   │   ├── SKILL.md
+│   │   └── references/                  # 10 stage playbooks (community, validate, mvp, pricing, etc.)
+│   ├── gstack/                          # Executive review suite (Garry Tan)
+│   │   ├── SKILL.md
+│   │   └── references/                  # office-hours, ceo-review, design, devex, eng, autoplan, qa
 │   ├── feature-map/                     # Feature contract authoring & coverage
 │   │   ├── SKILL.md
 │   │   ├── references/                  # contract-format, authoring-rules, layout-and-gates

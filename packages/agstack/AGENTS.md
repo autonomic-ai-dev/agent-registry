@@ -30,6 +30,8 @@ alwaysApply: true
 - **`code-review`:** Adversarial audit across security, concurrency, error paths, and resource leaks; analyze blast radius; zero test weakening.
 - **`technical-writing`:** Author clear, layered docs (Diátaxis, Google Dev style, STE); use real code symbols; eliminate AI fluff.
 - **`prototype`:** Settle architectural forks and performance trade-offs empirically; clean disposal.
+- **`entrepreneur`:** Business idea validation, community discovery, manual processizing ("magic piece of paper"), weekend MVP scoping, first 100 customers, pricing models, sustainable growth, and company values (Sahil Lavingia Minimalist Entrepreneur framework).
+- **`gstack`:** Garry Tan executive review suite: YC office hours (product reframing), CEO review (10-star product), Design/DevEx/Eng reviews, and Autoplan pipeline.
 - **`autonomous-run`:** Milestone decomposition; continuous verification; hard gate stop on any failure; self-contained evidence record.
 
 ---
