@@ -1,0 +1,53 @@
+name: Garry Tan gstack Review Engine
+version: 2
+min_spine_version: "0.19.0"
+start_node: YCOfficeHours
+
+nodes:
+  - name: YCOfficeHours
+    kind: agent
+    description: "Clarify value proposition, target customer, and core unfair advantage before any implementation begins."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: Autoplan
+    kind: agent
+    description: "Decompose mission into strict milestone deliverables, architectural invariants, and deterministic test boundaries."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: EngReview
+    kind: agent
+    description: "Audit code against agstack invariants: immutability, boundary discipline, zero comment slop, and verification root separation."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: DesignReview
+    kind: agent
+    description: "Evaluate user interface and developer experience against strict typography, contrast ratios, and responsive layouts."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: CEOReviewGate
+    kind: approval_gate
+    description: "Human founder / CEO signs off on functional architecture and customer experience prior to deployment."
+
+  - name: QALead
+    kind: agent
+    description: "Execute end-to-end regression tests and seal verification evidence into .verify/."
+
+edges:
+  - from: YCOfficeHours
+    to: Autoplan
+  - from: Autoplan
+    to: EngReview
+  - from: EngReview
+    to: DesignReview
+  - from: DesignReview
+    to: CEOReviewGate
+  - from: CEOReviewGate
+    to: QALead
