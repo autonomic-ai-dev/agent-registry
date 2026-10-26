@@ -35,6 +35,20 @@
       "organ": "agent-spine",
       "invoke": "agent-spine init --with @feature",
       "fallback": "bash scripts/run-workflow.sh run workflows/feature.yaml"
+    },
+    "gstack": {
+      "description": "YC office hours → autoplan → eng review → design review → CEO review gate → QA lead",
+      "path": "workflows/gstack.yaml",
+      "organ": "agent-spine",
+      "invoke": "agent-spine init --with @gstack",
+      "fallback": "bash scripts/run-workflow.sh run workflows/gstack.yaml"
+    },
+    "minimalist-entrepreneur": {
+      "description": "Community discovery → problem validation → build minimal MVP → customer signoff gate → processize & scale",
+      "path": "workflows/minimalist-entrepreneur.yaml",
+      "organ": "agent-spine",
+      "invoke": "agent-spine init --with @minimalist-entrepreneur",
+      "fallback": "bash scripts/run-workflow.sh run workflows/minimalist-entrepreneur.yaml"
     }
   }
 }

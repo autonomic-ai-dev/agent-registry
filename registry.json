@@ -70,6 +70,8 @@
     "@stacked-pr": "workflows/stacked-pr.yaml",
     "@bugfix": "workflows/bugfix.yaml",
     "@feature": "workflows/feature.yaml",
-    "@mcp-health-check": "workflows/mcp-health-check.yaml"
+    "@mcp-health-check": "workflows/mcp-health-check.yaml",
+    "@gstack": "workflows/gstack.yaml",
+    "@minimalist-entrepreneur": "workflows/minimalist-entrepreneur.yaml"
   }
 }

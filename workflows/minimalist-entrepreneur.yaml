@@ -1,0 +1,44 @@
+name: Minimalist Entrepreneur Lifecycle
+version: 2
+min_spine_version: "0.19.0"
+start_node: CommunityDiscovery
+
+nodes:
+  - name: CommunityDiscovery
+    kind: agent
+    description: "Identify underserved communities and actively listen for recurring pain points and unmet workflows."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: ProblemValidation
+    kind: agent
+    description: "Confirm willingness to pay and validate that the proposed solution saves time or money."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: BuildMinimalMVP
+    kind: agent
+    description: "Scaffold the leanest functional product that solves the core problem without extraneous features."
+    retry_policy:
+      max_attempts: 2
+      backoff_ms: 500
+
+  - name: CustomerSignoffGate
+    kind: approval_gate
+    description: "Founder validates first paying customer commitments and pricing model before scale launch."
+
+  - name: ProcessizeAndScale
+    kind: agent
+    description: "Automate repetitive delivery tasks and document operational runbooks for sustainable growth."
+
+edges:
+  - from: CommunityDiscovery
+    to: ProblemValidation
+  - from: ProblemValidation
+    to: BuildMinimalMVP
+  - from: BuildMinimalMVP
+    to: CustomerSignoffGate
+  - from: CustomerSignoffGate
+    to: ProcessizeAndScale
