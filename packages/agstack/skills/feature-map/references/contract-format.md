@@ -17,7 +17,7 @@ Every feature contract has, in this order:
 | 3 | `## Verification Suites (Targeted Test Commands)` | Unit command, functional command, allowlisted command, preconditions, and the numbered steps |
 | 4 | `## Gotchas` | Traps, stale expectations, coverage gaps, and known failures |
 
-No other `H2` sections are allowed.
+No other `H2` sections are allowed, with one exception: a repository whose verification harness requires a `## Code` section may add it as the last `H2`. It lists the files and directories the feature owns.
 
 ## Sub-features
 
@@ -47,7 +47,7 @@ This section names the exact commands and then lists the steps.
 
 ```markdown
 - **Unit Tests:** the command that covers this feature's logic.
-- **Functional API Tests (Hurl):** the command that runs `functional/<feature>.hurl`.
+- **Functional tests:** the command that runs this feature's functional suite, when the repository has one (see the verification skill's `references/functional-tests.md`).
 - **Allowlisted Verification:** the same runner command, as listed in the allowlist.
 - **Preconditions:** services that must run, data that must exist, and the environment variables required.
 ```
@@ -68,7 +68,7 @@ An Expected line must match an assertion in the test entry. A step with no match
 - Steps are numbered in the order of the functional file's request entries.
 - Each step heading carries `(entries …)` with the entry numbers it covers.
 - A step may cover a contiguous range of entries that share one purpose, and it names the range.
-- Every entry is covered by exactly one step. The coverage script in `scripts/feature_coverage.sh` checks this.
+- Every entry is covered by exactly one step. The coverage script in `scripts/feature_coverage.sh <feature.md> <suite> [entry-regex]` checks this. The default regex matches HTTP request lines; pass a regex for other suite formats.
 
 Example heading: `3. **accept-all-future** (entries 26–30) — every installment falls after the cutoff date.`
 

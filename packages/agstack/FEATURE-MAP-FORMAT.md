@@ -15,7 +15,7 @@ Scope: Canonical format rules for any repository utilizing the `.verify/` verifi
 │   ├── README.md      # Index table, baseline preconditions, driving conventions
 │   └── <feature>.md   # 4-H2 feature contracts with four-part step verification
 ├── functional/
-│   ├── <feature>.hurl # Declarative Hurl scenario tests
+│   ├── <feature>.hurl # functional suite for the feature surface
 │   └── payloads/      # JSON/fixture payloads referenced by four-part steps
 ├── checks/            # Generic harness static checks (feature_coverage.sh, etc.)
 ├── suites/            # Repository-specific test helpers and suites
@@ -27,7 +27,9 @@ Scope: Canonical format rules for any repository utilizing the `.verify/` verifi
 
 ## 2. Strict 4-H2 Feature Contract Format
 
-Every `.verify/features/<feature>.md` MUST enforce exactly four H2 sections in this order:
+Every `.verify/features/<feature>.md` MUST enforce exactly four contract H2 sections in this order. The agent-brain stop gate also requires a `## Code` section that lists the files and directories the feature owns, and it blocks a turn that changes code outside every feature's `## Code` section.
+
+Optional YAML frontmatter sits above the title. It holds `feature: <name>` (must equal the file name) and `related:`, a list of `"[[other-feature]]"` wikilinks. Obsidian draws these links as a graph. `agent-brain feature-graph [DIR]` prints the maps as JSON nodes and edges, and rejects a link to an unknown feature.
 
 ### H2 1: `## Sub-features`
 Atomic kebab-case identifiers pairing each sub-feature with intent, behavior, and outcome:
@@ -60,7 +62,7 @@ Explicit targeted commands discovered from codebase navigation, followed by numb
 ## Verification Suites (Targeted Test Commands)
 
 - **Unit Tests:** `cargo test --package jobs-worker --lib`
-- **Functional API Tests (Hurl):** `hurl --test .verify/functional/jobs.hurl`
+- **Functional tests (HTTP example):** `hurl --test .verify/functional/jobs.hurl`
 - **Allowlisted Verification:** `sh .verify/run.sh jobs`
 - **Preconditions:** Service running on `127.0.0.1:8080`, tenant seeded.
 
@@ -94,7 +96,7 @@ Operational traps, timing requirements, coverage gaps, and unconfirmed expectati
 ## 3. Mandatory Invariants
 
 1. **Four-Part Step Records:** Each step states: `Request:`, `Why:`, `Expected:` (with concrete assertions), and `Impact:`.
-2. **1:1 Step-to-Entry Linkage:** Every request in `.hurl` files must be mapped to exactly one step heading carrying `(entries …)`.
+2. **1:1 Step-to-Entry Linkage:** Every functional suite entry must be mapped to exactly one step heading carrying `(entries …)`.
 3. **Sourced Expectations:** Reference data derived from live environments records the query and date. Derived from code names the class. Unconfirmed values are marked `[UNCONFIRMED]`.
 4. **Boundary Fixtures Match Steps:** Fixtures used for boundary steps must contain the exact boundary values named.
 5. **Zero Placeholders:** Never use `<token>` or `<id>`. Use shell variables (`$PORT`) or literal names.

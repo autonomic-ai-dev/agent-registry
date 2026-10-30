@@ -24,9 +24,9 @@ alwaysApply: true
 - **`context-and-intent`:** Interrogate design docs, ADRs, PR history, and git logs; extract true problem intent without asking the user.
 - **`design-and-architecture`:** Follow existing repository design patterns strictly; model domain and core types before control flow; evaluate interface depth.
 - **`bug-fix`:** Analyze stack traces and logs; construct failing runtime reproduction *before* touching code; fix root cause; pair with regression test.
-- **`feature`:** Interrogate codebase; model domain data shape; author 4-H2 contract & 4-part steps; TDD; pair with functional Hurl scenario; quality gates.
+- **`feature`:** Interrogate codebase; model domain data shape; author 4-H2 contract & 4-part steps; TDD; pair with a functional suite for each surface; quality gates.
 - **`refactoring`:** Baseline tests pass first; subtract dead weight before adding; collapse wrappers; enforce immutability; prove behavioral invariance.
-- **`test-suite-generation`:** Author targeted unit tests and functional Hurl suites based on changed code; maintain 1:1 step-to-entry coverage.
+- **`test-suite-generation`:** Author targeted unit tests and functional suites for each changed surface; maintain 1:1 step-to-entry coverage.
 - **`code-review`:** Adversarial audit across security, concurrency, error paths, and resource leaks; analyze blast radius; zero test weakening.
 - **`technical-writing`:** Author clear, layered docs (Diátaxis, Google Dev style, STE); use real code symbols; eliminate AI fluff.
 - **`prototype`:** Settle architectural forks and performance trade-offs empirically; clean disposal.
@@ -123,7 +123,7 @@ In repositories with `.verify/` (or when creating verification):
 4. **The TodoList Contract (Skill & Playbook Hydration):**
    - When `route_task` returns `matched_skills` or recommends a playbook, you MUST call `read_file` on the matched playbook/skill path and copy its numbered checklist steps verbatim into your active task plan before calling any code-editing or execution tools.
    - Operating without opening and copying the matched playbook into your plan is a protocol breach.
-5. **Strict 4-H2 Feature Contract:** Every `.verify/features/<feature>.md` enforces exactly four sections in order:
+5. **Feature Contract:** Every `.verify/features/<feature>.md` has four contract H2 sections in order, plus a `## Code` section when the repository's harness requires one. Optional frontmatter holds `feature` (equal to the file name), `knowledge_base`, and `related` wikilinks:
    - `## Sub-features`: Atomic kebab-case identifiers with intent, behavior, and outcome.
    - `## How to get to it (user POV)`: Literal CLI, HTTP, or message entrypoints.
    - `## Verification Suites (Targeted Test Commands)`: Unit command, functional command, allowlisted command, and numbered four-part steps.
@@ -133,7 +133,7 @@ In repositories with `.verify/` (or when creating verification):
    - `Why:` the behavior proved.
    - `Expected:` status code and concrete assertions with values.
    - `Impact:` final system state changes.
-7. **1:1 Step Coverage:** Every request entry in functional Hurl files is covered by exactly one step (`(entries …)`). Static check `checks/feature_coverage.sh` fails on unmapped or duplicate entries.
+7. **1:1 Step Coverage:** Every functional suite entry is covered by exactly one step (`(entries …)`). Static check `checks/feature_coverage.sh` (default entry regex: HTTP request lines) fails on unmapped or duplicate entries.
 8. **Sourced Expectations:** Values derived from reference data or calendar dates come from a recorded live query noted in the contract. Values derived from code name the class/method. Unconfirmed values are marked `[UNCONFIRMED]`.
 9. **Zero Placeholders:** Commands contain no angle-bracket placeholders (`<token>`, `<id>`). Use shell variables (`$PORT`, `{{job_id}}`) or literal values.
 10. **Allowlisted Verification:** Run verification through allowlisted entrypoints (`.verify/run.sh <feature>`) defined in `.verify/verify.toml`.

@@ -19,7 +19,7 @@ Before authoring code, emit the Session Anchor and copy these 6 steps verbatim i
 - [ ] Step 2: Model core types, domain entities, and boundary schemas (immutable, Zod/serde)
 - [ ] Step 3: Author 4-H2 feature contract (`.verify/features/<feature>.md`) with 4-part steps
 - [ ] Step 4: Implement behavior via TDD (write unit tests first, minimal implementation)
-- [ ] Step 5: Pair with functional verification suites (Hurl / API contracts)
+- [ ] Step 5: Pair with functional verification suites (for each surface the repository exposes)
 - [ ] Step 6: Execute default post-dev verification via `agstack` `verification` skill (`.verify/run.sh`)
 
 ---
@@ -64,7 +64,7 @@ Before authoring code, emit the Session Anchor and copy these 6 steps verbatim i
 - Adhere to `principle-immutability-first` and KISS/DRY.
 
 ### Step 5: Pair with Functional API Tests
-- Create or update `.verify/functional/<feature>.hurl` or functional test suite.
+- Create or update the functional suite under `.verify/functional/` for the feature surface.
 - Pair every request entry with exactly one step in the feature contract (`(entries …)`).
 - Ensure payloads exist under `.verify/functional/payloads/`.
 

@@ -15,7 +15,7 @@ Load this file when you set up `.verify/` in a repository, or when you run or ch
 │   ├── README.md      preconditions, driving conventions, proof standards, feature index
 │   └── <feature>.md   contracts (see contract-format.md)
 ├── functional/
-│   ├── <feature>.hurl
+│   ├── <feature>.<ext>
 │   └── payloads/      rendered into artifacts/<RUN_ID>/ by run.sh
 ├── checks/            generic harness checks and gate scripts
 ├── suites/            repository-specific checks and helpers
@@ -25,7 +25,7 @@ Load this file when you set up `.verify/` in a repository, or when you run or ch
 
 ## Entry coverage
 
-`checks/feature_coverage.sh <feature.md> <functional.hurl>` fails when a request entry is covered by no step or by two. Call it from the static phase of `run.sh`.
+`checks/feature_coverage.sh <feature.md> <suite> [entry-regex]` fails when a request entry is covered by no step or by two. Call it from the static phase of `run.sh`.
 
 ## Coverage floor
 
@@ -55,7 +55,7 @@ Use the repository's own tools for each gate. Read the repository's build config
 | Coverage | Measured with the repository's report tooling against the floor |
 | Static analysis | The repository's analysis service is run when reachable; otherwise the gate is not available |
 | Release notes | When source changes, the repository's release-notes location has a changed entry |
-| Functional tests | The Hurl suites run against the local services |
+| Functional tests | The functional suites run against the local services |
 
 ## High-risk changes and independent review
 

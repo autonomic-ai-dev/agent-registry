@@ -11,7 +11,7 @@ agstack is a fixed path, not a menu. Every invocation runs the **Core path** in 
 
 Do these steps in order. Do not skip one because the task looks small.
 
-1. **Route.** Call `route_task` with `user_message`, `current_working_directory`, and `open_files`. Obey its `must_apply`. Route again only when the directory changes, the route is over four hours old, a gate denies a tool, or the task phase changes.
+1. **Route.** Call `route_task` with `user_message`, `current_working_directory`, and `open_files`. Obey its `must_apply`. Route again only when the directory changes, the route is over four hours old, a gate denies a tool, or the task phase changes. A skill that `route_task` lists is applied only after you `read_file` its `SKILL.md` and copy its numbered steps into your plan. A listed skill you have not read has not been applied, so read it before the first edit or command.
 2. **Load the core references.** Read these two files in full. They are the default for every invocation:
    - `../token-efficiency/SKILL.md`: rethink whether code is needed, reuse existing code, minimise blast radius, and keep context reads bounded.
    - `../no-comments/SKILL.md`: add no comments unless the user asks.

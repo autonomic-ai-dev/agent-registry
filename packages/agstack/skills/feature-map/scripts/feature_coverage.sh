@@ -1,17 +1,18 @@
 #!/usr/bin/env sh
 set -eu
 
-if [ "$#" -ne 2 ]; then
-  echo "usage: feature_coverage.sh <feature.md> <functional.hurl>" >&2
+if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
+  echo "usage: feature_coverage.sh <feature.md> <suite-file> [entry-regex]" >&2
   exit 2
 fi
 
 FEATURE_MD="$1"
-HURL="$2"
+SUITE="$2"
+ENTRY_REGEX="${3:-^(GET|POST|PUT|PATCH|DELETE) }"
 
-entries=$(grep -c -E '^(GET|POST|PUT|PATCH|DELETE) ' "$HURL" || true)
+entries=$(grep -c -E "$ENTRY_REGEX" "$SUITE" || true)
 if [ "$entries" -eq 0 ]; then
-  echo "FAIL $HURL has no request entries" >&2
+  echo "FAIL $SUITE has no entries matching $ENTRY_REGEX" >&2
   exit 1
 fi
 

@@ -7,7 +7,7 @@ Load this file when you set up or change `.verify/verify.toml` or `.verify/run.s
 Find the test setup by reading the repository, not by asking the user:
 
 - Unit test frameworks: the build manifest or package file (for example `Cargo.toml`, `pyproject.toml`, `package.json`, `go.mod`, `Makefile`, or a Maven or Gradle build file).
-- Endpoints for functional tests: the routing tables, controllers, or handlers, with their paths, request schemas, status codes, and verbs.
+- Functional surfaces: the routing tables or handlers (HTTP), the command-line parser (CLI), the public exports (library), or the screens (UI). Only the surfaces that exist get a functional phase.
 - Environment and ports: example environment files, configuration files, container manifests, and command-line flags.
 
 ## Layout
@@ -16,8 +16,8 @@ Find the test setup by reading the repository, not by asking the user:
 .verify/
 ├── verify.toml        allowlist of trusted commands
 ├── run.sh             runner: doctor, unit, static, functional
-├── doctor.sh          read-only environment checks
-├── functional/        Hurl files, one per feature, with payloads/
+├── doctor.sh          read-only environment checks (optional)
+├── functional/        functional suites, if the repository has a surface (optional)
 └── artifacts/         run output, kept after teardown
 ```
 
@@ -29,8 +29,8 @@ The allowlist names every command that counts as verification evidence. A comman
 [verify]
 commands = [
   ".verify/run.sh",
-  ".verify/run.sh all",
-  "hurl --test .verify/functional/account-creation.hurl",
+  ".verify/run.sh unit",
+  "cargo test --all-features",
 ]
 
 [verify.default]
@@ -43,12 +43,12 @@ Add a command to the allowlist before you rely on it as evidence. Write each ent
 
 ## Runner (`run.sh`)
 
-The runner executes four phases in order:
+The runner executes its phases in order. A phase the repository does not have is skipped, and the run says so:
 
-1. **Doctor:** run `doctor.sh`. A failing doctor stops the run before any test starts.
+1. **Doctor:** run `doctor.sh` when it exists. A failing doctor stops the run before any test starts.
 2. **Unit:** run the repository's unit tests for the selected feature, or for the whole repository when no feature is given.
-3. **Static:** run the static checks: coverage of feature entries, payload contracts, and the repository's cluster or configuration checks.
-4. **Functional:** run the Hurl files against the local services. Pass credentials through environment variables, and never print them.
+3. **Static:** run the static checks the repository defines, such as coverage of feature entries, linters, or configuration checks.
+4. **Functional:** run the functional suites in `functional/`, against the local surface, when the repository has one. Pass credentials through environment variables, and never print them.
 
 The runner:
 
@@ -59,4 +59,4 @@ The runner:
 
 ## Doctor (`doctor.sh`)
 
-The doctor is read-only. It checks the required tools, the required ports, and that the required credentials are set. It reports the presence of a credential, never its value.
+The doctor is read-only. It checks the required tools, the required ports when the repository uses them, and that the required credentials are set. It reports the presence of a credential, never its value.

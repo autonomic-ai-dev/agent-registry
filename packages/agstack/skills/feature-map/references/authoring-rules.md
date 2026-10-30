@@ -22,7 +22,7 @@ These rules apply to every feature map change:
 3. **User-observable behaviour only.** Private helpers, internal fields, and internal comments do not belong in the map. Map external interfaces and what callers observe.
 4. **Never weaken an assertion to pass.** When a test fails, fix the code, or record the root cause under Gotchas. Do not remove sub-features or loosen assertions to get a green run.
 5. **Index every feature.** Each `features/<feature>.md` is listed in `features/README.md`. No orphan contracts.
-6. **Pair API features with functional tests.** A feature with an HTTP or RPC surface has a `functional/<feature>.hurl` file.
+6. **Pair surfaced features with functional tests.** A feature with an HTTP, RPC, CLI, or UI surface has a functional suite under `functional/`, named for the feature. A feature with no external surface says so in Gotchas.
 7. **Four-part step records and entry coverage.** Follow `contract-format.md`. Run the coverage script from the static phase.
 8. **Sourced expectations.** Values that depend on the environment's reference data (calendar dates, period or cycle identifiers, derived amounts) come from a recorded live query. Write the query, its result, and its date in the contract. Values derived from code name the class or method. Values not confirmed by a live run are marked `[UNCONFIRMED]`. A live value that contradicts a local config file wins; record the change in Gotchas.
 9. **Boundary fixtures match their step.** A payload used by a boundary step contains the boundary value the step names. Check this before accepting the contract.

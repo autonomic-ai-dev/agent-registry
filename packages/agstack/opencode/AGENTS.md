@@ -24,9 +24,9 @@ alwaysApply: true
 - **`context-and-intent`:** Interrogate design docs, ADRs, PR history, and git logs; extract true problem intent without asking the user.
 - **`design-and-architecture`:** Follow existing repository design patterns strictly; model domain and core types before control flow; evaluate interface depth.
 - **`bug-fix`:** Analyze stack traces and logs; construct failing runtime reproduction *before* touching code; fix root cause; pair with regression test.
-- **`feature`:** Interrogate codebase; model domain data shape; author 4-H2 contract & 4-part steps; TDD; pair with functional Hurl scenario; quality gates.
+- **`feature`:** Interrogate codebase; model domain data shape; author 4-H2 contract & 4-part steps; TDD; pair with a functional suite for each surface; quality gates.
 - **`refactoring`:** Baseline tests pass first; subtract dead weight before adding; collapse wrappers; enforce immutability; prove behavioral invariance.
-- **`test-suite-generation`:** Author targeted unit tests and functional Hurl suites based on changed code; maintain 1:1 step-to-entry coverage.
+- **`test-suite-generation`:** Author targeted unit tests and functional suites for each changed surface; maintain 1:1 step-to-entry coverage.
 - **`code-review`:** Adversarial audit across security, concurrency, error paths, and resource leaks; analyze blast radius; zero test weakening.
 - **`technical-writing`:** Author clear, layered docs (Diátaxis, Google Dev style, STE); use real code symbols; eliminate AI fluff.
 - **`prototype`:** Settle architectural forks and performance trade-offs empirically; clean disposal.
@@ -98,7 +98,7 @@ Security and prompt injection defense are non-negotiable engineering requirement
 
 ## 9. Verification & Harness Standards (`.verify/`)
 In repositories with `.verify/` (or when creating verification):
-1. **Strict 4-H2 Feature Contract:** Every `.verify/features/<feature>.md` enforces exactly four sections in order:
+1. **Feature Contract:** Every `.verify/features/<feature>.md` has four contract H2 sections in order, plus a `## Code` section when the repository's harness requires one. Optional frontmatter holds `feature` (equal to the file name), `knowledge_base`, and `related` wikilinks:
    - `## Sub-features`: Atomic kebab-case identifiers with intent, behavior, and outcome.
    - `## How to get to it (user POV)`: Literal CLI, HTTP, or message entrypoints.
    - `## Verification Suites (Targeted Test Commands)`: Unit command, functional command, allowlisted command, and numbered four-part steps.
@@ -108,7 +108,7 @@ In repositories with `.verify/` (or when creating verification):
    - `Why:` the behavior proved.
    - `Expected:` status code and concrete assertions with values.
    - `Impact:` final system state changes.
-3. **1:1 Step Coverage:** Every request entry in functional Hurl files is covered by exactly one step (`(entries …)`). Static check `checks/feature_coverage.sh` fails on unmapped or duplicate entries.
+3. **1:1 Step Coverage:** Every functional suite entry is covered by exactly one step (`(entries …)`). Static check `checks/feature_coverage.sh` (default entry regex: HTTP request lines) fails on unmapped or duplicate entries.
 4. **Sourced Expectations:** Values derived from reference data or calendar dates come from a recorded live query noted in the contract. Values derived from code name the class/method. Unconfirmed values are marked `[UNCONFIRMED]`.
 5. **Zero Placeholders:** Commands contain no angle-bracket placeholders (`<token>`, `<id>`). Use shell variables (`$PORT`, `{{job_id}}`) or literal values.
 6. **Allowlisted Verification:** Run verification through allowlisted entrypoints (`.verify/run.sh <feature>`) defined in `.verify/verify.toml`.

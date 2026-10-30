@@ -26,7 +26,7 @@ A good map answers three questions for that reader:
 
 ## Core invariants
 
-- Every feature contract has exactly four `H2` sections, in order: Sub-features, How to get to it, Verification Suites, Gotchas.
+- Every feature contract has four contract `H2` sections, in order: Sub-features, How to get to it, Verification Suites, Gotchas. A `## Code` section may follow them when the repository's harness requires one.
 - Every step gives its request, its reason, its expected result with values, and its impact.
 - Every functional test entry is covered by exactly one step.
 - Calendar-dependent and environment-dependent values come from a recorded live query. Values not confirmed live are marked `[UNCONFIRMED]`.
