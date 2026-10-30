@@ -1,0 +1,12 @@
+{
+  "name": "bench",
+  "version": "1.0.0-rc5",
+  "description": "Benchmarks, CI proofs, and latency gates for agent-brain (bench, proofs)",
+  "subcommands": ["bench", "proofs"],
+  "binaries": {
+    "aarch64-apple-darwin": {
+      "url": "https://github.com/autonomic-ai-dev/agent-registry/releases/download/extension-bench-v1.0.0-rc5/agent-brain-bench-1.0.0-rc5-aarch64-apple-darwin",
+      "sha256": "bcd7c51a5245ed7a36a67412b0be29cf41b81c06793d8f6c47360cea9dcfe31a"
+    }
+  }
+}
