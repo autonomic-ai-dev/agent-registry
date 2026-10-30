@@ -6,7 +6,7 @@
   "binaries": {
     "aarch64-apple-darwin": {
       "url": "https://github.com/autonomic-ai-dev/agent-registry/releases/download/extension-bench-v1.0.0-rc5/agent-brain-bench-aarch64-apple-darwin",
-      "sha256": "8f2ac5a3e9a069e57dd86d9108c0c7197751ae3cf3d234b2276a25a31f70ffd7"
+      "sha256": "bcd7c51a5245ed7a36a67412b0be29cf41b81c06793d8f6c47360cea9dcfe31a"
     }
   }
 }
